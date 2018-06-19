@@ -76,6 +76,24 @@
             "type": "function"
         },
         {
+            "constant": true,
+            "inputs": [],
+            "name": "getCarEquipment",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
             "constant": false,
             "inputs": [
                 {
@@ -147,6 +165,10 @@
                 {
                     "name": "_carLoading",
                     "type": "uint256"
+                },
+                {
+                    "name": "_carEquipments",
+                    "type": "string"
                 }
             ],
             "payable": false,
@@ -220,7 +242,24 @@
             ],
             "name": "LogUpdateCarDataLst",
             "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "addr",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "name": "Successed",
+                    "type": "bool"
+                }
+            ],
+            "name": "LogSetCarEquipment",
+            "type": "event"
         }
     ],
-    "NEWEST_ADDRESS": "0xb2Ab768783dEA01C8958d35D92f52FBE65C6f284"
+    "NEWEST_ADDRESS": "0x8118D3028C356C58891Dd5CcbD3b51164cb24c9C"
 }

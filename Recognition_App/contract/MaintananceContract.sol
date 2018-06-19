@@ -11,7 +11,7 @@ contract MaintananceContract {
 		string fixDate;
 		uint mileage;
 		string fixType;
-		string[] fixList;
+		string fixList;
 		// bool hasData;
 	}
 
@@ -20,7 +20,7 @@ contract MaintananceContract {
 	address admin;
 
 
-	function MaintananceContract ( address _carAddr, string _fixFactoryID, string _fixDate, uint _mileage, string _fixType ) public {
+	function MaintananceContract ( address _carAddr, string _fixFactoryID, string _fixDate, uint _mileage, string _fixType, string _fixList ) public {
 		admin = msg.sender;
 
 		info.maintenanceAddr = address( this );
@@ -29,7 +29,7 @@ contract MaintananceContract {
 		info.fixDate = _fixDate;
 		info.mileage = _mileage;
 		info.fixType = _fixType;
-		// info.fixList = _fixList;
+		info.fixList = _fixList;
 
 	}	
 
@@ -39,7 +39,7 @@ contract MaintananceContract {
 	}
 	
 
-	function getMaintananceInfo() public view returns( address, string, string, uint, string, string[] )  {
+	function getMaintananceInfo() public view returns( address, string, string, uint, string, string )  {
 
 		return( info.carAddr, info.fixFactoryID, info.fixDate, info.mileage, info.fixType, info.fixList );
 	}

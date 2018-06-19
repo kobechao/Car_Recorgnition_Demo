@@ -18,6 +18,7 @@ app.register_blueprint( AUCTION )
 
 
 
+
 login_manager = LoginManager()
 login_manager.init_app( app )
 
