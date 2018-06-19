@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -54,13 +53,13 @@
         <h5 class="sidenav-heading"></h5>
         <ul class="side-menu list-unstyled" id="side-main-menu">
           <li>
-            <a href="index.html"><i class="fas fa-car"></i>你的車輛</a>
+            <a href="{{url_for('index.index')}}"><i class="fas fa-car"></i>你的車輛</a>
           </li>
           <li>
-            <a href="applyMaintance.html"><i class="fas fa-wrench"></i>汽車維修</a>
+            <a href="{{url_for('index.applyMaintance')}}"><i class="fas fa-wrench"></i>汽車維修</a>
           </li>
           <li>
-            <a href="applyAuction.html"><i class="fas fa-shopping-cart"></i>二手車拍賣</a>
+            <a href="{{url_for('index.applyAuction')}}"><i class="fas fa-shopping-cart"></i>二手車拍賣</a>
           </li>
         </ul>
       </div>

@@ -27,7 +27,7 @@ class MaintananceContract():
 		self.contract_Car_Recorgnition = eth.contract( abi = self.contractABI, bytecode = self.contractBytecode )
 
 		self.contractHash = self.contract_Car_Recorgnition \
-			.constructor ( args['carAddr'], args['fixFactoryID'], args['fixDate'], args['mileage'], args['fixType'], list(args['fixList']) ) \
+			.constructor ( args['carAddr'], args['fixFactoryID'], args['fixDate'], args['mileage'], args['fixType'] ) \
 			.transact( transaction = { "from": self.__adminAddr } )
 
 		self.receipt = eth.waitForTransactionReceipt( self.contractHash )
@@ -42,7 +42,7 @@ class MaintananceContract():
 	def __get_Bytecode_ABI( self ) :
 
 		contractPath = ['contract/MaintananceContract.sol']
-		if __name__ == 'Recognition_App.contract':
+		if __name__ == 'Recognition_App.MaintananceContract':
 			contractPath = ['Recognition_App/contract/MaintananceContract.sol']
 		
 		compiledValues = list(compile_files( contractPath ).values())[0]
@@ -92,7 +92,7 @@ def test( MaintainanceContract ):
 		}) 
 	)
 
-	# print( MaintananceContract.getMaintananceInfo() )
+	print( MaintananceContract.getMaintananceInfo() )
 	pass
 
 if __name__ == '__main__':

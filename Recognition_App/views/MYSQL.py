@@ -64,6 +64,54 @@ def setCarRecordData( addr, IDNumber ) :
 		return False
 
 
+def setFixRecordData( repairerID, addr) :
+
+	if addr:
+		conn = connect_to_db()
+		cursor = conn.cursor()
+
+		try:
+			sql = 'INSERT INTO fix_records_table( repairerID, fixContractAddr ) values( \'%s\', \'%s\' );'
+			cursor.execute( sql % ( repairerID, addr ) )
+		except Exception as e:
+			print( e )
+			cursor.close()
+			conn.close()
+			return False
+		
+		conn.commit()
+		cursor.close()
+		conn.close()
+
+		return True
+		
+	else :
+		return False
+
+
+def getFixRecordData() :
+
+	conn = connect_to_db()
+	cursor = conn.cursor( pymysql.cursors.DictCursor )
+
+	try:
+		sql = 'SELECT * FROM fix_records_table ;'
+		cursor.execute( sql )
+		fixData = cursor.fetchall()
+		print( fixData )
+		return fixData
+
+	except Exception as e:
+		print( e )
+		cursor.close()
+		conn.close()
+		return False
+		
+
+	cursor.close()
+	conn.close()
+
+	
 
 
 

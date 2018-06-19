@@ -20,7 +20,7 @@ contract MaintananceContract {
 	address admin;
 
 
-	function MaintananceContract ( address _carAddr, string _fixFactoryID, string _fixDate, uint _mileage, string _fixType, string[] _fixList ) public {
+	function MaintananceContract ( address _carAddr, string _fixFactoryID, string _fixDate, uint _mileage, string _fixType ) public {
 		admin = msg.sender;
 
 		info.maintenanceAddr = address( this );
@@ -29,7 +29,7 @@ contract MaintananceContract {
 		info.fixDate = _fixDate;
 		info.mileage = _mileage;
 		info.fixType = _fixType;
-		info.fixList = _fixList;
+		// info.fixList = _fixList;
 
 	}	
 

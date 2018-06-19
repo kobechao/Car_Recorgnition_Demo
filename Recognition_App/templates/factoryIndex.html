@@ -94,9 +94,9 @@
                   </li>
                 </ul>
               </li><!-- Log out-->
-              <li class="nav-item">
-                <a class="nav-link logout" href="{{%20url_for('login.login')%20}}"><span class="d-none d-sm-inline-block">Logout</span><i class="fas fa-sign-out-alt"></i></a>
-              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link logout" href="{{ url_for('login.login')}}"><span class="d-none d-sm-inline-block">Logout</span><i class="fas fa-sign-out-alt"></i></a>
+              </li> -->
             </ul>
           </div>
         </div>
@@ -123,21 +123,15 @@
                       </tr>
                     </thead>
                     <tbody>
+                      {% for fixData in res['fixData'] %}
+
                       <tr>
                         <th scope="row">1</th>
-                        <td>0x000000000000000000000000001</td>
-                        <td>魯夫</td>
+                        <td>{{ fixData['fixContractAddr']}}</td>
+                        <td>{{ fixData['repairerID'] }}</td>
                       </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>0x000000000000000000000000002</td>
-                        <td>索隆</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>0x000000000000000000000000003</td>
-                        <td>娜美</td>
-                      </tr>
+                      {% endfor %}
+                      
                     </tbody>
                   </table>
                 </div>
@@ -293,52 +287,7 @@
     maintanceItemNo++;
    } 
       
- // {% with messages = get_flashed_messages() %} 
- //        {% if messages %} 
- //          {% for message in messages %}
- //            alert( '{{message}}' )
- //          {% endfor %} 
- //        {% endif %} 
- //      {% endwith %}
-
- //      var contant_department = $('#contant_department');
-
-
- //      $('#token_btn').prop('disabled', true);
- //      $('#token_txt').keyup(function() {
- //        if($(this).val() != '') {
- //           $('#token_btn').prop('disabled', false);
- //        }
- //      });
-
-
-
- //      $("#token_btn").click( ()=> {
- //        var userToken = $("#token_txt").val();
-
- //        $.ajax( {
- //          url: "{{ url_for('index.getAuthorizedDepartmentData') }}",
- //          data: {
- //            userid: "{{ session['userid'] }}",
- //            userToken: userToken
- //          },
- //          type: "POST",
- //          success: function( response ) {
- //            console.log( response );
- //            if( response['message'] ) {
- //              alert( response['message'] )
- //            } else {
- //              contant_department.hide();
- //              contant_department.html( response );
- //              contant_department.show(1000);
-
- //            }
- //          },
- //          error: function( error ) {
- //            console.log( error );
- //          }
- //        })
- //      }) 
+ 
 $('#addMaintanceRecord').on('show.bs.modal', function (event) {
   var input = $(event.relatedTarget) // Button that triggered the modal
   var recipient = input.data('whatever')

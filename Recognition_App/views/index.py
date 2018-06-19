@@ -58,31 +58,25 @@ def index() :
 
 
 
-@INDEX.route('/<url_institution>', methods=['GET', 'POST'] )
-def institutionRegistration( url_institution ) :
-	institution = url_institution.upper()
 
-	if current_user.is_active and session['logged_in']:
-		if request.method == 'POST':
-			form = dict(request.form)
+@INDEX.route('/applyMaintance', methods=['GET', 'POST'] )
+def applyMaintance( ) :
+	if request.method == 'POST' :
+		form = request.form
+		print( form )
+		setFixRecordData( form.get('repairer', None), form.get('carAddr', None) )
 
-			if form.get( 'password', None )[0] == str(session['password']) :
-				res = ApiExecuter( URLS_CONF[ institution ] + '/insertUserData', getContractDBData( current_user.id ), form ).getDBRespondData()
-				flash( res[institution] )
-
-			else :
-				flash( 'Wrong Password!')
-
-			return redirect( url_for('index.institutionRegistration', url_institution=url_institution) )
+		return redirect( url_for('index.applyMaintance' ) )
+	
+	return render_template( 'applyMaintance.html' )
 
 
-		else :
-			# res = ApiExecuter( URLS_CONF[ institution ] + '/insertUserData', getContractDBData( current_user.id ), {'userName': 'kobe', 'birthday':'1996/09/23'} ).getDBRespondData()
-			
-			return render_template( '%s.html' % url_institution )
+@INDEX.route('/applyAuction', methods=['GET', 'POST'] )
+def applyAuction( ) :
+		
+	return render_template( 'applyAuction.html' )
 
-	else :
-		return 'NOT LOGIN'
+	
 
 
 @INDEX.route('/profile', methods=['GET'])
@@ -115,6 +109,8 @@ def listCarInfo() :
 				res['carColor'] = carList[5]
 				res['carLoading'] = carList[6]
 				res['fixRecords'] = carList[7]
+
+				jsonfile.close()
 
 			return render_template('carInfo.html', res=res )
 

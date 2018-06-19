@@ -54,7 +54,7 @@
             <a href="{{ url_for('index.index') }}"><i class="fas fa-car"></i>你的車輛</a>
           </li>
           <li>
-            <a href="applyMaintance.html"><i class="fas fa-wrench"></i>汽車維修</a>
+            <a href="{{ url_for('index.applyMaintance') }}"><i class="fas fa-wrench"></i>汽車維修</a>
           </li>
           <li>
             <a href="#"><i class="fas fa-shopping-cart"></i>二手車拍賣</a>
@@ -104,9 +104,14 @@
                   </li>
                 </ul>
               </li><!-- Log out-->
+              {% if session.logged_in %}
               <li class="nav-item">
-                <a class="nav-link logout" href="{{%20url_for('login.login')%20}}"><span class="d-none d-sm-inline-block">Logout</span><i class="fas fa-sign-out-alt"></i></a>
+                <a class="nav-link logout" href="{{ url_for('login.logout') }}"><span class="d-none d-sm-inline-block">Logout</span><i class="fas fa-sign-out-alt"></i></a>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link logout" href="{{ url_for('login.login') }}"><span class="d-none d-sm-inline-block">Login</span><i class="fas fa-sign-out-alt"></i></a>
               </li>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -117,6 +122,7 @@
         <div class="container-fluid">
             <div class="col-lg-12">
               <div class="card">
+                {% if session.logged_in %}
                 <div class="card-header d-flex align-items-center">
                   <i class="fas fa-shopping-cart fa-lg"></i>&nbsp&nbsp<h4>汽車拍賣申請</h4>
                 </div>
@@ -127,9 +133,9 @@
                       <div class="col-sm-10">
                         <select name="account" class="form-control" name="marrige" id="marrige">
                           <option>選擇汽車合約</option>
-                          <option value="0x000000000000000000000000001">0x000000000000000000000000001</option>
-                          <option value="0x000000000000000000000000002">0x000000000000000000000000002</option>
-                          <option value="0x000000000000000000000000003">0x000000000000000000000000003</option>
+                          {% for addr in session['carAddrs'] %}
+                            <option value="{{addr}}">{{addr}}</option>
+                            {% endfor %}
                         </select>
                       </div>
                     </div>
@@ -164,6 +170,11 @@
                     </div>
                   </form>
                 </div>
+                {% else %}
+                <div class="card-header d-flex align-items-center">
+                  <i class="fas fa-shopping-cart fa-lg"></i>&nbsp&nbsp<h4>請先登入</h4>
+                </div>
+                {% endif %}
               </div>
             </div>
           </div>
