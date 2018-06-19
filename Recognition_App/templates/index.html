@@ -334,7 +334,7 @@
     </footer>
   </div><!-- JavaScript files-->
   <!-- JavaScript files-->
-      <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/umd/popper.min.js') }}"> </script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/grasp_mobile_progress_circle-1.0.0.min.js') }}"></script>
@@ -362,72 +362,71 @@
    
   <!-- <script src="../static/js/front.js"></script>  -->
   <script type="text/javascript">
-     var equipmentNo=1;
+      var equipmentNo=1;
  
-  function addEquipment(){
-   
-    var equipmentList =  document.getElementById('equipmentList');
-    var newTr = document.createElement('tr');
-    var newTh = document.createElement('th');
-    var newEquipmentNo = document.createTextNode(equipmentNo);
-    newTh.appendChild(newEquipmentNo);
-    var newTd = document.createElement('td');
-    var newInput = document.createElement('input');
-    newInput.type="text";
-    newInput.className="form-control";
-    newInput.id="equipment"+equipmentNo;
-    // newInput.name="equipment"+equipmentNo;
-    newTd.appendChild(newInput);
-    newTr.appendChild(newTh);
-    newTr.appendChild(newTd);
-    equipmentList.appendChild(newTr);
-    equipmentNo++;
-   } 
+      function addEquipment(){
+       
+        var equipmentList =  document.getElementById('equipmentList');
+        var newTr = document.createElement('tr');
+        var newTh = document.createElement('th');
+        var newEquipmentNo = document.createTextNode(equipmentNo);
+        newTh.appendChild(newEquipmentNo);
+        var newTd = document.createElement('td');
+        var newInput = document.createElement('input');
+        newInput.type="text";
+        newInput.className="form-control";
+        newInput.id="equipment"+equipmentNo;
+        // newInput.name="equipment"+equipmentNo;
+        newTd.appendChild(newInput);
+        newTr.appendChild(newTh);
+        newTr.appendChild(newTd);
+        equipmentList.appendChild(newTr);
+        equipmentNo++;
+       } 
 
-   $('#MaintanceRecord').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever')
-  console.log(recipient);
+      $('#MaintanceRecord').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever')
+        console.log(recipient);
 
-   // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('維修紀錄： ' + recipient);
-  modal.find('.modal-body').text(recipient);
-  
-  
-  var contant_carInfo= $('.statistics');
-
-  $("#carAddrBtn").click( ()=> {
-        console.log('click');
-        var carAddr = $("#carAddr").val();
-
-        $.ajax( {
-          url: "{{ url_for('index.listCarInfo') }}",
-          data: {
-            IDNumber: "{{ session['userid'] }}",
-            carAddr: carAddr
-          },
-          type: "POST",
-          success: function( response ) {
-            console.log( response );
-            if( response['message'] ) {
-              // alert( response['message'] )
-            } else {
-              contant_carInfo.hide();
-              contant_carInfo.html( response );
-              contant_carInfo.show(1000);
-
-            }
-          },
-          error: function( error ) {
-            console.log( error );
-          }
-        })
+         // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('維修紀錄： ' + recipient);
+        modal.find('.modal-body').text(recipient);  
       })
-  
-})
+
+
+      var contant_carInfo= $('.statistics');
+
+      $("#carAddrBtn").click( ()=> {
+            console.log('click');
+            var carAddr = $("#carAddr").val();
+
+            $.ajax( {
+              url: "{{ url_for('index.listCarInfo') }}",
+              data: {
+                IDNumber: "{{ session['userid'] }}",
+                carAddr: carAddr
+              },
+              type: "POST",
+              success: function( response ) {
+                console.log( response );
+                if( response['message'] ) {
+                  // alert( response['message'] )
+                } else {
+                  contant_carInfo.hide();
+                  contant_carInfo.html( response );
+                  contant_carInfo.show(1000);
+
+                }
+              },
+              error: function( error ) {
+                console.log( error );
+              }
+            })
+      })
 
   
 

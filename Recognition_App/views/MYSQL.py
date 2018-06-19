@@ -27,7 +27,7 @@ def getCarRecordData( registerID, currentPerson=None ):
 			cursor.execute( sql )
 			carData = cursor.fetchall()
 
-			print( carData )
+			# print( carData )
 			return carData
 
 	except Exception as e :

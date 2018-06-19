@@ -9,6 +9,7 @@ web3 = Web3( HTTPProvider( 'http://localhost:8545' ) )
 eth = web3.eth
 assert web3.isConnected()
 assert eth.accounts
+import json
 
 
 class Car_Recorgnition_Contract():
@@ -17,7 +18,7 @@ class Car_Recorgnition_Contract():
 
 	def __init__( self ):
 		print( '\nInit Car_Recorgnition_Contract\n')
-		self.__deployed = False
+		self.deployed = False
 
 
 
@@ -36,9 +37,19 @@ class Car_Recorgnition_Contract():
 		self.receipt = eth.waitForTransactionReceipt( self.contractHash )
 		self.address = self.receipt.get('contractAddress', None)
 
-		print( '\nContract Deployed at\n%s\n%s\n' % ( self.address, '=' * len( self.address ) ) )
+		print( '\nContract deployed at\n%s\n%s\n' % ( self.address, '=' * len( self.address ) ) )
 
-		self.__deployed = True
+		self.deployed = True
+
+		with open( 'contract.json', 'w' ) as jsonfile :
+			json.dump( dict({
+				'ABI': self.contractABI,
+				'NEWEST_ADDRESS': self.address
+				}), jsonfile, sort_keys=True, indent=4, ensure_ascii=False)
+
+			jsonfile.close()
+
+
 		
 
 
@@ -57,7 +68,7 @@ class Car_Recorgnition_Contract():
 
 	def setFixRecord( self, addr ) :
 
-		if self.__deployed :
+		if self.deployed :
 			_tx = self.contract_Car_Recorgnition.functions.setFixRecord( addr ).transact( { 'from': self.__adminAddr, 'to': self.receipt['contractAddress'] } )
 			eth.waitForTransactionReceipt( _tx )
 			return _tx
@@ -69,7 +80,7 @@ class Car_Recorgnition_Contract():
 
 	def getCarInfos( self ) :
 
-		if self.__deployed :
+		if self.deployed :
 			_tx = self.contract_Car_Recorgnition.functions.getCarInfos().call( {  'to': self.receipt['contractAddress'] } )
 			return _tx
 
@@ -79,7 +90,7 @@ class Car_Recorgnition_Contract():
 
 	def getCarAddress( self ) :
 
-		if self.__deployed :
+		if self.deployed :
 			_tx = self.contract_Car_Recorgnition.functions.getAddr().call( {  'to': self.receipt['contractAddress'] } )
 			return _tx
 
@@ -93,6 +104,8 @@ class Car_Recorgnition_Contract():
 		return _tx
 
 
+def getCarContract( contractAddress, contractABI ) :
+	return eth.contract( address=contractAddress, abi=contractABI, ContractFactoryClass=ConciseContract )
 
 def test( CarContract ):
 	CarContract.getContract(

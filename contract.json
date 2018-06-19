@@ -1,0 +1,226 @@
+{
+    "ABI": [
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "_fixRecord",
+                    "type": "address"
+                }
+            ],
+            "name": "setFixRecord",
+            "outputs": [
+                {
+                    "name": "Successed",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "getCarInfos",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "uint256"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "uint256"
+                },
+                {
+                    "name": "",
+                    "type": "address[]"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "getAddr",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "_licencePlateNumber",
+                    "type": "string"
+                },
+                {
+                    "name": "_engineSerialNumber",
+                    "type": "string"
+                },
+                {
+                    "name": "_factory",
+                    "type": "string"
+                },
+                {
+                    "name": "_carYears",
+                    "type": "uint256"
+                },
+                {
+                    "name": "_carStyle",
+                    "type": "string"
+                },
+                {
+                    "name": "_carColor",
+                    "type": "string"
+                },
+                {
+                    "name": "_carLoading",
+                    "type": "uint256"
+                }
+            ],
+            "name": "updateCarInfo",
+            "outputs": [
+                {
+                    "name": "Successed",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "name": "_licencePlateNumber",
+                    "type": "string"
+                },
+                {
+                    "name": "_engineSerialNumber",
+                    "type": "string"
+                },
+                {
+                    "name": "_factory",
+                    "type": "string"
+                },
+                {
+                    "name": "_carYears",
+                    "type": "uint256"
+                },
+                {
+                    "name": "_carStyle",
+                    "type": "string"
+                },
+                {
+                    "name": "_carColor",
+                    "type": "string"
+                },
+                {
+                    "name": "_carLoading",
+                    "type": "uint256"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "addr",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "name": "Successed",
+                    "type": "bool"
+                }
+            ],
+            "name": "LogUpdateCarInfo",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "addr",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "name": "Successed",
+                    "type": "bool"
+                }
+            ],
+            "name": "LogGetCarInfos",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "addr",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "name": "Successed",
+                    "type": "bool"
+                }
+            ],
+            "name": "LogSetFixRecord",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "addr",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "name": "Successed",
+                    "type": "bool"
+                }
+            ],
+            "name": "LogUpdateCarDataLst",
+            "type": "event"
+        }
+    ],
+    "NEWEST_ADDRESS": "0xb2Ab768783dEA01C8958d35D92f52FBE65C6f284"
+}

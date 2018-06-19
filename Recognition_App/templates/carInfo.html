@@ -10,23 +10,23 @@
                       <tr>
                         <th scope="row"></th>
                         <td>車牌號碼</td>
-                        <td>ABC-1234</td>
+                        <td>{{ res['licencePlateNumber'] }}</td>
                         <td>引擎號碼</td>
-                        <td>1234567890</td>
+                        <td>{{ res['engineSerialNumber'] }}</td>
                       </tr>
                       <tr>
                         <th scope="row"></th>
                         <td>廠牌</td>
-                        <td>TOYOTA</td>
+                        <td>{{ res['factory'] }}</td>
                         <td>車型</td>
-                        <td>ALTIS</td>
+                        <td>{{ res['carStyle'] }}</td>
                       </tr>
                       <tr>
                         <th scope="row"></th>
                         <td>顏色</td>
-                        <td>白銀</td>
+                        <td>{{ res['carColor'] }}</td>
                         <td>人數</td>
-                        <td>4</td>
+                        <td>{{ res['carLoading'] }}</td>
                       </tr>
                       <tr>
                         <th scope="row"></th>
@@ -58,7 +58,8 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    {% for addr in res['fixRecords'] %}
+                    <!-- <tr>
                       <th scope="row">1</th>
                       <td>0xa00000000000000000000000001</td>
                       <td><button class="btn btn-primary" data-target="#MaintanceRecord" data-toggle="modal"  data-whatever="0xa00000000000000000000000001">維修資訊</button></td>
@@ -72,7 +73,13 @@
                       <th scope="row">3</th>
                       <td>0xa00000000000000000000000003</td>
                       <td><button class="btn btn-primary" data-target="#MaintanceRecord" data-toggle="modal" data-whatever="0xa00000000000000000000000003">維修資訊</button></td>
+                    </tr> -->
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>{{ addr }}</td>
+                      <td><button class="btn btn-primary" data-target="#MaintanceRecord" data-toggle="modal"  data-whatever="{{ addr }}">維修資訊</button></td>
                     </tr>
+                    {% endfor %}
                   </tbody>
                 </table>
               </div>
