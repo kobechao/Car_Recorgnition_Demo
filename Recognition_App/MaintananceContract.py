@@ -12,7 +12,7 @@ assert eth.accounts
 
 class MaintananceContract():
 
-	"""MaintainanceContract class in python"""
+	"""MaintananceContract class in python"""
 
 	def __init__( self ):
 		
@@ -20,14 +20,14 @@ class MaintananceContract():
 
 
 
-	def deployContract( self, args ) :
+	def getContract( self, args ) :
 		print( args )
 		self.__adminAddr = eth.accounts[0]
 		self.contractBytecode, self.contractABI = self.__get_Bytecode_ABI()
 		self.contract_Car_Recorgnition = eth.contract( abi = self.contractABI, bytecode = self.contractBytecode )
 
 		self.contractHash = self.contract_Car_Recorgnition \
-			.constructor ( args['carAddr'], args['fixFactoryID'], args['fixDate'], args['mileage'], args['fixType'] ) \
+			.constructor ( args['carAddr'], args['fixFactoryID'], args['fixDate'], int(args['mileage']), args['fixType'], args['fixList'] ) \
 			.transact( transaction = { "from": self.__adminAddr } )
 
 		self.receipt = eth.waitForTransactionReceipt( self.contractHash )
@@ -42,6 +42,7 @@ class MaintananceContract():
 	def __get_Bytecode_ABI( self ) :
 
 		contractPath = ['contract/MaintananceContract.sol']
+		print(__name__)
 		if __name__ == 'Recognition_App.MaintananceContract':
 			contractPath = ['Recognition_App/contract/MaintananceContract.sol']
 		
@@ -66,7 +67,17 @@ class MaintananceContract():
 	def getMaintananceInfo( self ) :
 
 		if self.__deployed :
-			_tx = self.contract_Car_Recorgnition.functions.getMaintananceInfo().call( {  'to': self.receipt['contractAddress'] } )
+			_tx = self.contract_Car_Recorgnition.functions.getAddr().call( {  'to': self.receipt['contractAddress'] } )
+			return _tx
+
+		else :
+			return None
+
+
+	def getMaintananceAddr( self ) :
+
+		if self.__deployed :
+			_tx = self.contract_Car_Recorgnition.functions.getAddr().call( {  'to': self.receipt['contractAddress'] } )
 			return _tx
 
 		else :
@@ -80,15 +91,15 @@ class MaintananceContract():
 
 
 
-def test( MaintainanceContract ):
-	MaintainanceContract.deployContract( 
+def test( MaintananceContract ):
+	MaintananceContract.deployContract( 
 		dict({
 			'carAddr': '0x692a70D2e424a56D2C6C27aA97D1a86395877b3A', 
 			'fixFactoryID': 'ABC', 
 			'fixDate': '2018/06/31', 
 			'mileage': 1000,
 			'fixType': 'glasses',
-			'fixList': ["front", "back", "fuck"],
+			'fixList': 'front, back, fuck',
 		}) 
 	)
 

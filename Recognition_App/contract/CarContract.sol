@@ -12,6 +12,7 @@ contract CarContract {
 		string carStyle;
 		string carColor;
 		uint carLoading;
+		string carEquipments;
 		address[] fixRecords;
 	}
 	
@@ -23,9 +24,10 @@ contract CarContract {
 	event LogGetCarInfos( address addr, bool Successed );
 	event LogSetFixRecord( address addr, bool Successed );
 	event LogUpdateCarDataLst( address addr, bool Successed );
+	event LogSetCarEquipment( address addr, bool Successed );
 
 	
-	function CarContract ( string _licencePlateNumber, string _engineSerialNumber, string _factory, uint _carYears, string _carStyle, string _carColor, uint _carLoading ) public {
+	function CarContract ( string _licencePlateNumber, string _engineSerialNumber, string _factory, uint _carYears, string _carStyle, string _carColor,  uint _carLoading, string _carEquipments ) public {
 		admin = msg.sender;
 
 		car.licencePlateNumber = _licencePlateNumber;
@@ -35,6 +37,7 @@ contract CarContract {
 		car.carStyle = _carStyle;
 		car.carColor = _carColor;
 		car.carLoading = _carLoading;
+		car.carEquipments = _carEquipments;
 		car.fixRecords = new address[](0);
 
 
@@ -86,12 +89,11 @@ contract CarContract {
 	}
 
  
-	function setFixRecord ( address _fixRecord ) isAdmin public returns( bool Successed ) {
-		car.fixRecords.push( _fixRecord );
-
-		Successed = true;
-		emit LogSetFixRecord( msg.sender, Successed );
+	function getCarEquipment() public view returns( string, bool ) {
+		return ( car.carEquipments, true );
 	}
+	
+	
 
 
 	

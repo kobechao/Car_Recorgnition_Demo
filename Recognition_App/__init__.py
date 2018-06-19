@@ -11,7 +11,7 @@ app = Flask(__name__, instance_relative_config=True)
 app.register_blueprint( LOGIN )
 app.register_blueprint( REGISTER )
 app.register_blueprint( INDEX, url_prefix='/index' )
-app.register_blueprint( FACTORY )
+app.register_blueprint( FACTORY, url_prefix='/factory' )
 
 
 login_manager = LoginManager()

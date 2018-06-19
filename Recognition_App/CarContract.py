@@ -22,7 +22,7 @@ class Car_Recorgnition_Contract():
 
 
 
-	def getContract( self, args ) :
+	def getContract( self, args, equipmentList ) :
 
 
 		self.__adminAddr = eth.accounts[0]
@@ -31,7 +31,7 @@ class Car_Recorgnition_Contract():
 		self.contract_Car_Recorgnition = eth.contract( abi = self.contractABI, bytecode = self.contractBytecode )
 
 		self.contractHash = self.contract_Car_Recorgnition \
-			.constructor ( args['licencePlateNumber'], args['engineSerialNumber'], args['factory'], int(args['carYears']), args['carStyle'], args['carColor'], int(args['carLoading'])) \
+			.constructor ( args['licencePlateNumber'], args['engineSerialNumber'], args['factory'], int(args['carYears']), args['carStyle'], args['carColor'], int(args['carLoading']), equipmentList ) \
 			.transact( transaction = { "from": self.__adminAddr } )
 
 		self.receipt = eth.waitForTransactionReceipt( self.contractHash )
@@ -98,21 +98,44 @@ class Car_Recorgnition_Contract():
 			return None
 
 
+	def setCarEquipmentList( self, equipmentList ) :
+
+		if self.deployed :
+			_tx = self.contract_Car_Recorgnition.functions.setCarEquipment( equipmentList ).transact( { 'from': self.__adminAddr, 'to': self.receipt['contractAddress'] } )
+			eth.waitForTransactionReceipt( _tx )
+			return _tx
+
+		else :
+			return None
+
+
+	def getCarEquipmentList( self ) :
+
+		if self.deployed :
+			_tx = self.contract_Car_Recorgnition.functions.getCarEquipment().call( {  'from': self.__adminAddr, 'to': self.receipt['contractAddress'] } )
+			return _tx[0].split(',')
+
+		else :
+			return None
+
+
 	
 	def getTx( self, tx ) :
 		_tx = eth.getTransaction( tx )
 		return _tx
 
 
-def getCarContract( contractAddress, contractABI ) :
-	return eth.contract( address=contractAddress, abi=contractABI, ContractFactoryClass=ConciseContract )
 
 def test( CarContract ):
 	CarContract.getContract(
-		{'licencePlateNumber': 'kobe', 'engineSerialNumber': 'kobe', 'factory': 'kobe', 'carStyle': 'kobe', 'carYears': '1999', 'carColor': 'blue', 'carLoading': '10', 'carPhoto': ''} 
+		{'licencePlateNumber': 'kobe', 'engineSerialNumber': 'kobe', 'factory': 'kobe', 
+			'carStyle': 'kobe', 'carYears': '1999', 'carColor': 'blue', 
+			'carLoading': '10', 'carPhoto': '', 'carEquipments': '1,2,3'} 
 	)
+	# CarContract.setCarEquipmentList( '1,2,3' )
 
 	print( CarContract.getCarInfos() )
+	print( CarContract.getCarEquipmentList() )
 	pass
 
 if __name__ == '__main__':

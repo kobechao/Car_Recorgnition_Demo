@@ -209,8 +209,8 @@
                           </table>
                         </div>
                         <div class="modal-footer">
-                          <input class="btn btn-secondary" type="reset" value="重填"> 
-                          <input class="btn btn-primary" type="submit" value="新增">
+                          <input type="reset" class="btn btn-secondary" value="重填"> 
+                          <input type="submit" class="btn btn-primary" value="新增">
                         </div>
                       </form>
                     </div>
@@ -375,7 +375,7 @@
         newInput.type="text";
         newInput.className="form-control";
         newInput.id="equipment"+equipmentNo;
-        // newInput.name="equipment"+equipmentNo;
+        newInput.name="equipment"+equipmentNo;
         newTd.appendChild(newInput);
         newTr.appendChild(newTh);
         newTr.appendChild(newTd);

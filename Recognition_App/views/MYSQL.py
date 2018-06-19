@@ -1,7 +1,8 @@
 import pymysql
+import json
 
 def connect_to_db() :
-	conn = pymysql.connect( host='127.0.0.1', user='root', passwd='root', db='DBO_CAR_RECORGNITION')
+	conn = pymysql.connect( host='127.0.0.1', user='root', passwd='tina1633', db='DBO_CAR_RECORGNITION')
 
 	return conn
 
@@ -156,3 +157,40 @@ def getAuctionPersonalData():
 	cursor.close()
 	conn.close()
 
+
+
+def verify( registerID, loginPwd ) :
+	conn = connect_to_db()
+	cursor = conn.cursor( pymysql.cursors.DictCursor )
+
+	try:
+		sql = 'SELECT password FROM car_personal_table WHERE IDNumber = \'%s\';' % ( registerID )
+		print( sql )
+		cursor.execute( sql )
+		password = cursor.fetchone()
+
+		if password:
+			if loginPwd == password : 
+				return True
+		
+		return False
+
+	except Exception as e:
+		print( e )
+		cursor.close()
+		conn.close()
+		return False
+		
+
+	cursor.close()
+	conn.close()
+
+
+def getCarABI() :
+	try :
+		with open( 'contract.json', 'r' ) as jsonfile :
+			data = json.load( jsonfile )
+			jsonfile.close()
+			return data.get( 'ABI', None )
+	except:
+		return None
