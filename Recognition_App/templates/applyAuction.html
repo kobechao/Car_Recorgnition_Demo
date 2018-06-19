@@ -131,7 +131,7 @@
                     <div class="form-group row">
                       <label class="col-sm-2 form-control-label">汽車</label>
                       <div class="col-sm-10">
-                        <select name="account" class="form-control" name="marrige" id="marrige">
+                        <select name="carAddr" class="form-control"  id="marrige">
                           <option>選擇汽車合約</option>
                           {% for addr in session['carAddrs'] %}
                             <option value="{{addr}}">{{addr}}</option>
@@ -143,11 +143,12 @@
                     <div class="form-group row">
                       <label class="col-sm-2 form-control-label">拍賣商</label>
                       <div class="col-sm-10">
-                       <select name="account" class="form-control" name="auctionVendor" id="auctionVenrdor">
+                       <select name="auctioneer" class="form-control"  id="auctionVenrdor">
                           <option>選擇拍賣商</option>
-                          <option value="維修商A">拍賣商A</option>
-                          <option value="維修商B">拍賣商B</option>
-                          <option value="維修商C">買賣商C</option>
+                          {% for i in res %}
+                          <option value="{{i.auctioneerID}}">{{i.auctioneerName}}</option>
+                         
+                            {% endfor %}
                         </select>
                       </div>
                     </div>

@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>個人汽車資訊</title>
+  <title>中古車拍賣</title>
   <meta content="" name="description">
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <link rel="stylesheet" href="{{ url_for( 'static', filename='css/bootstrap.min.css' )}}">
@@ -41,7 +41,7 @@
         <!-- User Info-->
         <div class="sidenav-header-inner text-center">
           <a href="profile.html"><img alt="person" class="img-fluid rounded-circle" src="../static/img/user-icon.png"></a>
-          <h2 class="h5" id="username">NAME</h2><span></span>
+          <h2 class="h5" id="username">拍賣</h2><span></span>
         </div><!-- Small Brand information, appears on minimized sidebar-->
         <div class="sidenav-header-logo">
           <a class="brand-small text-center" href="/index"><strong></strong><strong class="text-primary"></strong></a>
@@ -62,7 +62,7 @@
             <div class="navbar-header">
               <a class="menu-btn" href="#" id="toggle-btn"><i class="icon-bars"></i></a> <a class="navbar-brand" href="/index">
               <div class="brand-text d-none d-md-inline-block">
-                <strong class="text-primary"><i class="fas fa-wrench"></i></strong>
+                <strong class="text-primary"><i class="fas fa-shopping-cart"></i></strong>
               </div></a>
             </div>
             <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
@@ -94,9 +94,7 @@
                   </li>
                 </ul>
               </li><!-- Log out-->
-              <li class="nav-item">
-                <a class="nav-link logout" href="{{%20url_for('login.login')%20}}"><span class="d-none d-sm-inline-block">Logout</span><i class="fas fa-sign-out-alt"></i></a>
-              </li>
+             
             </ul>
           </div>
         </div>
@@ -105,42 +103,20 @@
     <section class="statistics section-padding">
       <div class="container-fluid">
         <div class="row d-flex" id="contant_department">       
-          <div class="col-4">
-            <div class="card income text-center">
-              <img class="card-img-top" src="https://www.motorbeam.com/wp-content/uploads/Toyota-Corolla-Altis-Colours.jpg">
-              <div class="card-body">
-                
-                <div class="display h2 "><strong class="text-primary">TOYOTA </strong>ALTIS</div>
-                <div class="display h2">白銀</div>
-                <div class="display h2">4人座</div>       
-            </div>
-            <div class="card-fotter">
-              <div class="btn btn-primary btn-block" >詳細資訊</div>
-            </div>
-          </div>
-        </div>
+        
         <div class="col-4">
             <div class="card income text-center">
               <img class="card-img-top" src="https://www.motorbeam.com/wp-content/uploads/Toyota-Corolla-Altis-Colours.jpg">
               <div class="card-body">
-                
-                <div class="display h2 "><strong class="text-primary">TOYOTA </strong>ALTIS</div>
-                <div class="display h2">白銀</div>
-                <div class="display h2">4人座</div>       
-            </div>
-            <div class="card-fotter">
-              <div class="btn btn-primary btn-block" >詳細資訊</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-4">
-            <div class="card income text-center">
-              <img class="card-img-top" src="https://www.motorbeam.com/wp-content/uploads/Toyota-Corolla-Altis-Colours.jpg">
-              <div class="card-body">
-                
-                <div class="display h2 "><strong class="text-primary">TOYOTA </strong>ALTIS</div>
-                <div class="display h2">白銀</div>
-                <div class="display h2">4人座</div>       
+                {% for auctionData in res['auctionData'] %}
+                <div class="display h2 ">
+                  <div class=" isplay h2 text-primary" id="test" value="{{ auctionData['carContractAddr'] }}">{{ auctionData['carContractAddr']}}</div>
+                <div class="display h2" id="carFactory"></div>
+                <div class="display h2" id="carType"></div>
+                <div class="display h2" id="carColor"></div>
+                <div class="display h2" id="carYears"></div>
+                <div class="display h2" id="carLoading"></div>   
+                 {% endfor %}
             </div>
             <div class="card-fotter">
               <div class="btn btn-primary btn-block" >詳細資訊</div>
@@ -177,6 +153,7 @@
     <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.validate.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+     <script src="{{ url_for('static', filename='js/web3.js') }}"></script>
  <!--  <script src="../static/js/jquery.min.js">
   </script> 
   <script src="../static/js/umd/popper.min.js">
@@ -198,67 +175,259 @@
  <!--  <script src="../static/js/front.js"></script>  -->
   <script type="text/javascript">
 
-  
-      
- // {% with messages = get_flashed_messages() %} 
- //        {% if messages %} 
- //          {% for message in messages %}
- //            alert( '{{message}}' )
- //          {% endfor %} 
- //        {% endif %} 
- //      {% endwith %}
+ 
+    var web3 = require('web3');
+    var web3 = new web3()
+    if(!web3.currentProvider)
+      web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 
- //      var contant_department = $('#contant_department');
+    var TestContract = web3.eth.contract([
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "_fixRecord",
+                    "type": "address"
+                }
+            ],
+            "name": "setFixRecord",
+            "outputs": [
+                {
+                    "name": "Successed",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "getCarInfos",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "uint256"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "string"
+                },
+                {
+                    "name": "",
+                    "type": "uint256"
+                },
+                {
+                    "name": "",
+                    "type": "address[]"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "getAddr",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "_licencePlateNumber",
+                    "type": "string"
+                },
+                {
+                    "name": "_engineSerialNumber",
+                    "type": "string"
+                },
+                {
+                    "name": "_factory",
+                    "type": "string"
+                },
+                {
+                    "name": "_carYears",
+                    "type": "uint256"
+                },
+                {
+                    "name": "_carStyle",
+                    "type": "string"
+                },
+                {
+                    "name": "_carColor",
+                    "type": "string"
+                },
+                {
+                    "name": "_carLoading",
+                    "type": "uint256"
+                }
+            ],
+            "name": "updateCarInfo",
+            "outputs": [
+                {
+                    "name": "Successed",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "name": "_licencePlateNumber",
+                    "type": "string"
+                },
+                {
+                    "name": "_engineSerialNumber",
+                    "type": "string"
+                },
+                {
+                    "name": "_factory",
+                    "type": "string"
+                },
+                {
+                    "name": "_carYears",
+                    "type": "uint256"
+                },
+                {
+                    "name": "_carStyle",
+                    "type": "string"
+                },
+                {
+                    "name": "_carColor",
+                    "type": "string"
+                },
+                {
+                    "name": "_carLoading",
+                    "type": "uint256"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "addr",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "name": "Successed",
+                    "type": "bool"
+                }
+            ],
+            "name": "LogUpdateCarInfo",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "addr",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "name": "Successed",
+                    "type": "bool"
+                }
+            ],
+            "name": "LogGetCarInfos",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "addr",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "name": "Successed",
+                    "type": "bool"
+                }
+            ],
+            "name": "LogSetFixRecord",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "addr",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "name": "Successed",
+                    "type": "bool"
+                }
+            ],
+            "name": "LogUpdateCarDataLst",
+            "type": "event"
+        }
+    ]);
+
+        var addr = document.getElementById("test").innerHTML; 
+        var testContract = TestContract.at(addr);
+
+        console.log(addr);
+        console.log(testContract);
+        var result = testContract.getCarInfos();
+        console.log(result);
+
+        document.getElementById("carFactory").innerHTML = "車廠："+result[2];
+        document.getElementById("carType").innerHTML = "車型："+result[4];
+        document.getElementById("carColor").innerHTML = "顏色："+result[5];
+        document.getElementById("carYears").innerHTML = "出場年："+result[3];
+        document.getElementById("carYears").innerHTML = "人數："+result[6]+"人座";
+         // var result_1 = testContract.set(str);
+         // console.log(result_1);
 
 
- //      $('#token_btn').prop('disabled', true);
- //      $('#token_txt').keyup(function() {
- //        if($(this).val() != '') {
- //           $('#token_btn').prop('disabled', false);
- //        }
- //      });
+       
 
 
+;  
 
- //      $("#token_btn").click( ()=> {
- //        var userToken = $("#token_txt").val();
-
- //        $.ajax( {
- //          url: "{{ url_for('index.getAuthorizedDepartmentData') }}",
- //          data: {
- //            userid: "{{ session['userid'] }}",
- //            userToken: userToken
- //          },
- //          type: "POST",
- //          success: function( response ) {
- //            console.log( response );
- //            if( response['message'] ) {
- //              alert( response['message'] )
- //            } else {
- //              contant_department.hide();
- //              contant_department.html( response );
- //              contant_department.show(1000);
-
- //            }
- //          },
- //          error: function( error ) {
- //            console.log( error );
- //          }
- //        })
- //      }) 
-$('#addMaintanceRecord').on('show.bs.modal', function (event) {
-  var input = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = input.data('whatever')
-  var address = document.getElementById('carAddress').value;
-
-  console.log(address)  // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('新增維修紀錄： ' + address)
-  
-})
-    </script>
+  </script>
 
 </body>
 </html>

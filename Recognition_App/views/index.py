@@ -77,9 +77,9 @@ def applyAuction( ) :
 	if request.method == 'POST' :
 		form = request.form
 		print( form )
+		setAuctionData( form.get('auctioneer', None), form.get('carAddr', None) )
 		
-		
-		return redirect( url_for('index.applyMaintance' ) )
+		return redirect( url_for('index.applyAuction' ) )
 	res = getAuctionPersonalData()
 	flash(res)
 		

@@ -3,6 +3,7 @@ from .views.login import LOGIN
 from .views.register import REGISTER
 from .views.index import INDEX
 from .views.factory import FACTORY
+from .views.auction import AUCTION
 from flask_login import LoginManager
 from Recognition_App.models import User
 
@@ -12,6 +13,9 @@ app.register_blueprint( LOGIN )
 app.register_blueprint( REGISTER )
 app.register_blueprint( INDEX, url_prefix='/index' )
 app.register_blueprint( FACTORY )
+app.register_blueprint( AUCTION )
+
+
 
 
 login_manager = LoginManager()

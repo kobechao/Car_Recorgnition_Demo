@@ -96,7 +96,7 @@ def getFixRecordData() :
 	cursor = conn.cursor( pymysql.cursors.DictCursor )
 
 	try:
-		sql = 'SELECT row_count() as No,car_personal_table.name, fix_Apply.carContractAddr  FROM fix_Apply join car_record_table on fix_Apply.carContractAddr = car_record_table.carContractAddr join car_personal_table on car_record_table.IDNumber = car_personal_table.IDNumber; '
+		sql = 'SELECT fix_Apply.fixApplyNo ,car_personal_table.name, fix_Apply.carContractAddr  FROM fix_Apply join car_record_table on fix_Apply.carContractAddr = car_record_table.carContractAddr join car_personal_table on car_record_table.IDNumber = car_personal_table.IDNumber; '
 		cursor.execute( sql )
 		fixData = cursor.fetchall()
 		print( fixData )
@@ -141,6 +141,52 @@ def getAuctionPersonalData():
 
 	try:
 		sql = 'SELECT * FROM auction_personal_table;'
+		cursor.execute( sql )
+		auctionData = cursor.fetchall()
+		print( auctionData )
+		return auctionData
+
+	except Exception as e:
+		print( e )
+		cursor.close()
+		conn.close()
+		return False
+		
+
+	cursor.close()
+	conn.close()
+
+def setAuctionData( auctoneerID, addr) :
+
+	if addr:
+		conn = connect_to_db()
+		cursor = conn.cursor()
+
+		try:
+			sql = 'INSERT INTO auction_apply( auctioneerID, carContractAddr) values( \'%s\', \'%s\' );'
+			cursor.execute( sql % ( auctoneerID, addr ) )
+		except Exception as e:
+			print( e )
+			cursor.close()
+			conn.close()
+			return False
+		
+		conn.commit()
+		cursor.close()
+		conn.close()
+
+		return True
+		
+	else :
+		return False
+
+def getAuctionData():
+
+	conn = connect_to_db()
+	cursor = conn.cursor( pymysql.cursors.DictCursor )
+
+	try:
+		sql = 'SELECT car_personal_table.name ,auction_personal_table.auctioneerName,auction_apply.carContractAddr FROM auction_personal_table join auction_apply on auction_personal_table.auctioneerID = auction_apply.auctioneerID join car_record_table on auction_apply.carContractAddr = car_record_table.carContractAddr join car_personal_table on car_record_table.IDNumber = car_personal_table.IDNumber ;'
 		cursor.execute( sql )
 		auctionData = cursor.fetchall()
 		print( auctionData )
