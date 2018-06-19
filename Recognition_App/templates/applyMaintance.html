@@ -144,11 +144,12 @@
                     <div class="form-group row">
                       <label class="col-sm-2 form-control-label">維修商</label>
                       <div class="col-sm-10">
-                       <select name="repairer" class="form-control" name="marrige" id="marrige">
+                       <select name="repairer" class="form-control" name="FixFactory" id="FixFactory">
                           <option>選擇維修商</option>
-                          <option value="A">維修商A</option>
-                          <option value="B">維修商B</option>
-                          <option value="C">維修商C</option>
+                          {% for i in res %}
+                          <option value="{{i.repairerID}}">{{i.repairerName}}</option>
+                         
+                            {% endfor %}
                         </select>
                       </div>
                     </div>

@@ -126,9 +126,9 @@
                       {% for fixData in res['fixData'] %}
 
                       <tr>
-                        <th scope="row">1</th>
-                        <td>{{ fixData['fixContractAddr']}}</td>
-                        <td>{{ fixData['repairerID'] }}</td>
+                        <th scope="row">{{ fixData['No']}}</th>
+                        <td>{{ fixData['carContractAddr']}}</td>
+                        <td>{{ fixData['name'] }}</td>
                       </tr>
                       {% endfor %}
                       

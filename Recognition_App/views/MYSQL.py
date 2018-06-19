@@ -1,7 +1,8 @@
 import pymysql
 
 def connect_to_db() :
-	conn = pymysql.connect( host='127.0.0.1', user='root', passwd='tina1633', db='DBO_CAR_RECORGNITION')
+	conn = pymysql.connect( host='127.0.0.1', user='root', passwd='root', db='DBO_CAR_RECORGNITION')
+
 	return conn
 
 def getCarRecordData( registerID, currentPerson=None ):
@@ -71,7 +72,7 @@ def setFixRecordData( repairerID, addr) :
 		cursor = conn.cursor()
 
 		try:
-			sql = 'INSERT INTO fix_records_table( repairerID, fixContractAddr ) values( \'%s\', \'%s\' );'
+			sql = 'INSERT INTO fix_Apply( repairerID, carContractAddr) values( \'%s\', \'%s\' );'
 			cursor.execute( sql % ( repairerID, addr ) )
 		except Exception as e:
 			print( e )
@@ -95,7 +96,7 @@ def getFixRecordData() :
 	cursor = conn.cursor( pymysql.cursors.DictCursor )
 
 	try:
-		sql = 'SELECT * FROM fix_records_table ;'
+		sql = 'SELECT row_count() as No,car_personal_table.name, fix_Apply.carContractAddr  FROM fix_Apply join car_record_table on fix_Apply.carContractAddr = car_record_table.carContractAddr join car_personal_table on car_record_table.IDNumber = car_personal_table.IDNumber; '
 		cursor.execute( sql )
 		fixData = cursor.fetchall()
 		print( fixData )
@@ -112,6 +113,46 @@ def getFixRecordData() :
 	conn.close()
 
 	
+def getRepairerPersonalData():
 
+	conn = connect_to_db()
+	cursor = conn.cursor( pymysql.cursors.DictCursor )
 
+	try:
+		sql = 'SELECT repairerID, repairerName FROM repairer_personal_table;'
+		cursor.execute( sql )
+		repairerData = cursor.fetchall()
+		print( repairerData )
+		return repairerData
+
+	except Exception as e:
+		print( e )
+		cursor.close()
+		conn.close()
+		return False
+		
+
+	cursor.close()
+	conn.close()
+
+def getAuctionPersonalData():
+	conn = connect_to_db()
+	cursor = conn.cursor( pymysql.cursors.DictCursor )
+
+	try:
+		sql = 'SELECT * FROM auction_personal_table;'
+		cursor.execute( sql )
+		auctionData = cursor.fetchall()
+		print( auctionData )
+		return auctionData
+
+	except Exception as e:
+		print( e )
+		cursor.close()
+		conn.close()
+		return False
+		
+
+	cursor.close()
+	conn.close()
 

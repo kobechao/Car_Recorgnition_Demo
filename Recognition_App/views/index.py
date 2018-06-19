@@ -65,16 +65,25 @@ def applyMaintance( ) :
 		form = request.form
 		print( form )
 		setFixRecordData( form.get('repairer', None), form.get('carAddr', None) )
-
+		
 		return redirect( url_for('index.applyMaintance' ) )
-	
-	return render_template( 'applyMaintance.html' )
+	res = getRepairerPersonalData()
+	flash(res)
+	return render_template( 'applyMaintance.html', res=res )
 
 
 @INDEX.route('/applyAuction', methods=['GET', 'POST'] )
 def applyAuction( ) :
+	if request.method == 'POST' :
+		form = request.form
+		print( form )
 		
-	return render_template( 'applyAuction.html' )
+		
+		return redirect( url_for('index.applyMaintance' ) )
+	res = getAuctionPersonalData()
+	flash(res)
+		
+	return render_template( 'applyAuction.html', res=res )
 
 	
 

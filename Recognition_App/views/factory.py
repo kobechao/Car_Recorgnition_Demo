@@ -6,14 +6,14 @@ from Recognition_App.models import User
 
 FACTORY = Blueprint('factory', __name__, template_folder='templates', static_folder='static')
 
-@FACTORY.route( '/admin/factory/', methods = ['GET', 'POST'] )
+@FACTORY.route( '/factory/', methods = ['GET', 'POST'] )
 def factory() :
 	if request.method == 'GET' :
 		res = dict()
 
 		res['fixData'] = getFixRecordData()
-
 		print( res )
+		flash (res )
 
 		return render_template( 'factoryIndex.html', res=res )
 
