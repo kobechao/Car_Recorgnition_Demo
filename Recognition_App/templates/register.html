@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>註冊</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="{{ url_for( 'static', filename='css/bootstrap.min.css' )}}">
+  <!-- Font Awesome CSS-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+  <link rel="stylesheet" href="{{ url_for( 'static', filename='css/font-awesome.min.css' )}}">  
+  <link rel="stylesheet" href="{{ url_for( 'static', filename='css/fontastic.css' )}}">
+  <!-- jQuery Circle-->
+  <link rel="stylesheet" href="{{ url_for( 'static', filename='css/grasp_mobile_progress_circle-1.0.0.min.css' )}}">
+  <!-- Custom Scrollbar-->
+   <link rel="stylesheet" href="{{ url_for( 'static', filename='css/jquery.mCustomScrollbar.css' )}}">
+  <!-- theme stylesheet-->
+  <link rel="stylesheet" href="{{ url_for( 'static', filename='css/style.default.css' )}}">
+  <!-- Custom stylesheet - for your changes-->
+  <link rel="stylesheet" href="{{ url_for( 'static', filename='css/custom.css') }}">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="{{ url_for( 'static', filename='img/favicon.ico') }}">
+  <!-- Bootstrap CSS-->
+  <!-- <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+  <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../static/css/fontastic.css" rel="stylesheet">
+  <link href="../static/css/grasp_mobile_progress_circle-1.0.0.min.css" rel="stylesheet">
+  <link href="../static/css/jquery.mCustomScrollbar.css" rel="stylesheet">
+  <link href="../static/css/style.default.css" rel="stylesheet">
+  <link href="../static/css/custom.css" rel="stylesheet">
+  <link href="../static/img/favicon.ico" rel="shortcut icon"> -->
+  </head>
+  <body>
+    
+    <div class="page login-page">
+      <div class="container">
+        <div class="form-outer text-center d-flex align-items-center">
+          <div class="form-inner">
+            <div class="logo"><span >選擇你的身分</span><strong class="text-primary">註冊</strong></div>
+            <p style="color:#fff">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt </p>
+            <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">車主</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">維修商</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">拍賣商</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+  <form class="text-left form-validate" action="#" method="post">
+              <div class="form-group-material">
+                <input id="personalID" type="text" name="registerID" required data-msg="Please enter your personalID" class="input-material">
+                <label for="personalID" class="label-material">身分證字號</label>
+              </div>
+              <div class="form-group-material">
+                <input id="name" type="text" name="name" required data-msg="Please enter your username" class="input-material">
+                <label for="name" class="label-material">姓名</label>
+              </div>
+              <div class="form-group-material">
+                <input id="birthday" type="date" name="birthday" required data-msg="Please enter your birthday" class="input-material">
+                <label for="birthday" class="label-material">生日</label>
+              </div>
+              <div class="form-group-material">
+                <input id="license" type="texti" name="license" required data-msg="Please enter your licensenumber" class="input-material">
+                <label for="license" class="label-material">駕照號碼</label>
+              </div>
+              <div class="form-group-material">
+                <input id="password" type="password" name="password" required data-msg="Please enter your password" class="input-material">
+                <label for="password" class="label-material">密碼</label>
+              </div>
+              <!-- <div class="form-group terms-conditions text-center">
+                <input id="register-agree" name="registerAgree" type="checkbox" value="1"  required data-msg="Your agreement is required" class="form-control-custom">
+                <label for="register-agree">我同意註冊時遵守政策</label>
+              </div> -->
+              <div class="form-group text-center">
+                <input  type="submit" name="userRegister" value="註冊" class="btn btn-primary" id="submit">
+                <input  type="reset" name="userRegister" value="清除" class="btn btn-secondary" >
+              </div>
+            </form></div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    <form class="text-left form-validate" action="#" method="post">
+              <div class="form-group-material">
+                <input id="personalID" type="text" name="registerID" required data-msg="Please enter your personalID" class="input-material">
+                <label for="personalID" class="label-material">維修廠代號</label>
+              </div>
+              <div class="form-group-material">
+                <input id="personalID" type="text" name="repairerName" required data-msg="Please enter your personalID" class="input-material">
+                <label for="personalID" class="label-material">維修廠名稱</label>
+              </div>
+              <div class="form-group-material">
+                <input id="name" type="text" name="agent" required data-msg="Please enter your username" class="input-material">
+                <label for="name" class="label-material">代理人</label>
+              </div>
+              
+              <div class="form-group-material">
+                <input id="password" type="password" name="password" required data-msg="Please enter your password" class="input-material">
+                <label for="password" class="label-material">密碼</label>
+              </div>
+              <!-- <div class="form-group terms-conditions text-center">
+                <input id="register-agree" name="registerAgree" type="checkbox" value="1"  required data-msg="Your agreement is required" class="form-control-custom">
+                <label for="register-agree">我同意註冊時遵守政策</label>
+              </div> -->
+              <div class="form-group text-center">
+                <input  type="submit" name="fixRegister" value="註冊" class="btn btn-primary" id="submit">
+                <input  type="reset" name="fixRegister" value="清除" class="btn btn-secondary" >
+              </div>
+            </form>
+  </div>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"><form class="text-left form-validate" action="#" method="post">
+              <div class="form-group-material">
+                <input id="personalID" type="text" name="registerID" required data-msg="Please enter your personalID" class="input-material">
+                <label for="personalID" class="label-material">拍賣商代號</label>
+              </div>
+              <div class="form-group-material">
+                <input id="personalID" type="text" name="auctioneerName" required data-msg="Please enter your personalID" class="input-material">
+                <label for="personalID" class="label-material">拍賣商名稱</label>
+              </div>
+              <div class="form-group-material">
+                <input id="name" type="text" name="agent" required data-msg="Please enter your username" class="input-material">
+                <label for="name" class="label-material">代理人</label>
+              </div>
+              
+              <div class="form-group-material">
+                <input id="password" type="password" name="password" required data-msg="Please enter your password" class="input-material">
+                <label for="password" class="label-material">密碼</label>
+              </div>
+              <!-- <div class="form-group terms-conditions text-center">
+                <input id="register-agree" name="registerAgree" type="checkbox" value="1"  required data-msg="Your agreement is required" class="form-control-custom">
+                <label for="register-agree">我同意註冊時遵守政策</label>
+              </div> -->
+              <div class="form-group text-center">
+                <input  type="submit" name="auctionRegister" value="註冊" class="btn btn-primary" id="submit">
+                <input  type="reset" name="auctionRegister" value="清除" class="btn btn-secondary" >
+              </div>
+            </form></div>
+</div>
+            <small>已經有帳號? </small><a href="/login" class="signup">登入</a>
+          </div>
+          <div class="copyrights text-center">
+            <p>Design by <a href="https://www.facebook.com/chung.h.lin.9" class="external">NTUT IFM JyunHao</a></p>
+            <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- JavaScript files-->
+      <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/umd/popper.min.js') }}"> </script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/grasp_mobile_progress_circle-1.0.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.cookie.js') }}"> </script>
+    <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.validate.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+  <!-- <script src="../static/js/jquery.min.js">
+  </script> 
+  <script src="../static/js/umd/popper.min.js">
+  </script> 
+  <script src="../static/js/bootstrap.min.js">
+  </script> 
+  <script src="../static/js/grasp_mobile_progress_circle-1.0.0.min.js">
+  </script> 
+  <script src="../static/js/jquery.cookie.js">
+  </script> 
+  <script src="../static/js/Chart.min.js">
+  </script> 
+  <script src="../static/js/jquery.validate.min.js">
+  </script> 
+  <script src="../static/js/jquery.mCustomScrollbar.concat.min.js">
+  </script>  -->
+  
+   <script src="{{ url_for('static', filename='js/front.js') }}"></script>
+   
+  <!-- <script src="../static/js/front.js"> -->
+  </script> <!--  <script type="text/javascript">
+      {% with messages = get_flashed_messages() %} 
+        {% if messages %} 
+          {% for message in messages %}
+            alert( '{{message}}' )
+          {% endfor %} 
+        {% endif %} 
+      {% endwith %}
+    </script> -->
+  </body>
+</html>

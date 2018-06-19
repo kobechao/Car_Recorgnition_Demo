@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>申請汽車拍賣</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     
+     <!-- <link rel="stylesheet" href="{{ url_for( 'static', filename='css/bootstrap.min.css' )}}"> -->
+  <!-- Font Awesome CSS-->
+  <!--  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='css/font-awesome.min.css' )}}">   --><!-- Fontastic Custom icon font-->
+  <!-- <link rel="stylesheet" href="{{ url_for( 'static', filename='css/fontastic.css' )}}"> -->
+  <!-- jQuery Circle-->
+  <!-- <link rel="stylesheet" href="{{ url_for( 'static', filename='css/grasp_mobile_progress_circle-1.0.0.min.css' )}}"> -->
+  <!-- Custom Scrollbar-->
+  <!--  <link rel="stylesheet" href="{{ url_for( 'static', filename='css/jquery.mCustomScrollbar.css' )}}"> -->
+  <!-- theme stylesheet-->
+  <!-- <link rel="stylesheet" href="{{ url_for( 'static', filename='css/style.default.css' )}}"> -->
+  <!-- Custom stylesheet - for your changes-->
+  <!-- <link rel="stylesheet" href="{{ url_for( 'static', filename='css/custom.css') }}"> -->
+  <!-- Favicon-->
+  <!-- <link rel="shortcut icon" href="{{ url_for( 'static', filename='img/favicon.ico') }}"> -->
+  <!-- Bootstrap CSS-->
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet"><!-- Font Awesome CSS-->
+  <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+  <link href="../static/css/font-awesome.min.css" rel="stylesheet"><!-- Fontastic Custom icon font-->
+  <link href="../static/css/fontastic.css" rel="stylesheet"><!-- jQuery Circle-->
+  <link href="../static/css/grasp_mobile_progress_circle-1.0.0.min.css" rel="stylesheet"><!-- Custom Scrollbar-->
+  <link href="../static/css/jquery.mCustomScrollbar.css" rel="stylesheet"><!-- theme stylesheet-->
+  <link href="../static/css/style.default.css" rel="stylesheet"><!-- Custom stylesheet - for your changes-->
+  <link href="../static/css/custom.css" rel="stylesheet"><!-- Favicon-->
+  <link href="../static/img/favicon.ico" rel="shortcut icon">
+  </head>
+  <body>
+    <!-- Side Navbar -->
+    <nav class="side-navbar">
+    <div class="side-navbar-wrapper">
+      <!-- Sidebar Header    -->
+      <div class="sidenav-header d-flex align-items-center justify-content-center">
+        <!-- User Info-->
+        <div class="sidenav-header-inner text-center">
+          <a href="profile.html"><img alt="person" class="img-fluid rounded-circle" src="../static/img/user-icon.png"></a>
+          <h2 class="h5" id="username">NAME</h2><span></span>
+        </div><!-- Small Brand information, appears on minimized sidebar-->
+        <div class="sidenav-header-logo">
+          <a class="brand-small text-center" href="/index"><strong>I</strong><strong class="text-primary">D</strong></a>
+        </div>
+      </div><!-- Sidebar Navigation Menus-->
+      <div class="main-menu">
+        <h5 class="sidenav-heading"></h5>
+        <ul class="side-menu list-unstyled" id="side-main-menu">
+          <li>
+            <a href="index.html"><i class="fas fa-car"></i>你的車輛</a>
+          </li>
+          <li>
+            <a href="applyMaintance.html"><i class="fas fa-wrench"></i>汽車維修</a>
+          </li>
+          <li>
+            <a href="applyAuction.html"><i class="fas fa-shopping-cart"></i>二手車拍賣</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <div class="page">
+      <!-- navbar-->
+      <header class="header">
+      <nav class="navbar">
+        <div class="container-fluid">
+          <div class="navbar-holder d-flex align-items-center justify-content-between">
+            <div class="navbar-header">
+              <a class="menu-btn" href="#" id="toggle-btn"><i class="icon-bars"></i></a> <a class="navbar-brand" href="/index">
+              <div class="brand-text d-none d-md-inline-block">
+                <strong class="text-primary"><i class="fas fa-car"></i></strong>
+              </div></a>
+            </div>
+            <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+              <!-- Notifications dropdown-->
+              <li class="nav-item dropdown">
+                <a aria-expanded="false" aria-haspopup="true" class="nav-link" data-target="#" data-toggle="dropdown" href="#" id="notifications" rel="nofollow"><i class="fa fa-bell"></i></a>
+                <ul aria-labelledby="notifications" class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item all-notifications text-center" href="#" rel="nofollow"><strong><i class="fa fa-bell"></i>No notifications</strong></a>
+                  </li>
+                </ul>
+              </li><!-- Messages dropdown-->
+              <li class="nav-item dropdown">
+                <a aria-expanded="false" aria-haspopup="true" class="nav-link" data-target="#" data-toggle="dropdown" href="#" id="messages" rel="nofollow"><i class="fa fa-envelope"></i></a>
+                <ul aria-labelledby="notifications" class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item all-notifications text-center" href="#" rel="nofollow"><strong><i class="fa fa-envelope"></i>No messages</strong></a>
+                  </li>
+                </ul>
+              </li><!-- Languages dropdown    -->
+              <li class="nav-item dropdown">
+                <a aria-expanded="false" aria-haspopup="true" class="nav-link language dropdown-toggle" data-target="#" data-toggle="dropdown" href="#" id="languages" rel="nofollow"><img alt="Taiwan" src="../static/img/flags/16/TW.png"><span class="d-none d-sm-inline-block">Taiwan</span></a>
+                <ul aria-labelledby="languages" class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="#" rel="nofollow"><img alt="English" class="mr-2" src="../static/img/flags/16/US.png"><span>USA</span></a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#" rel="nofollow"><img alt="Japanines" class="mr-2" src="../static/img/flags/16/JP.png"><span>Japan</span></a>
+                  </li>
+                </ul>
+              </li><!-- Log out-->
+              <li class="nav-item">
+                <a class="nav-link logout" href="{{%20url_for('login.login')%20}}"><span class="d-none d-sm-inline-block">Logout</span><i class="fas fa-sign-out-alt"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+      <!-- Header Section-->
+      <section class="dashboard-header section-padding">
+        <div class="container-fluid">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-header d-flex align-items-center">
+                  <i class="fas fa-shopping-cart fa-lg"></i>&nbsp&nbsp<h4>汽車拍賣申請</h4>
+                </div>
+                <div class="card-body">
+                  <form class="form-horizontal" method="POST">
+                    <div class="form-group row">
+                      <label class="col-sm-2 form-control-label">汽車</label>
+                      <div class="col-sm-10">
+                        <select name="account" class="form-control" name="marrige" id="marrige">
+                          <option>選擇汽車合約</option>
+                          <option value="0x000000000000000000000000001">0x000000000000000000000000001</option>
+                          <option value="0x000000000000000000000000002">0x000000000000000000000000002</option>
+                          <option value="0x000000000000000000000000003">0x000000000000000000000000003</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <label class="col-sm-2 form-control-label">拍賣商</label>
+                      <div class="col-sm-10">
+                       <select name="account" class="form-control" name="marrige" id="marrige">
+                          <option>選擇拍賣商</option>
+                          <option value="維修商A">拍賣商A</option>
+                          <option value="維修商B">拍賣商B</option>
+                          <option value="維修商C">買賣商C</option>
+                        </select>
+                      </div>
+                    </div>
+                 
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <label class="col-sm-2 form-control-label">登入密碼</label>
+                      <div class="col-sm-10">
+                        <input type="password" name="password" class="form-control" id="password" required>
+                      </div>
+                    </div>
+                    <div class="line"></div>
+                    
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <div class="col-sm-4 offset-sm-2">
+                        <button type="submit" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" class="btn btn-primary">送出</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+      </section>
+      
+      <!-- Updates Section -->
+      <footer class="main-footer">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6">
+              <p>NTUT IFM &copy; 2018</p>
+            </div>
+            <div class="col-sm-6 text-right">
+              <p>Design by <a href="https://www.facebook.com/chung.h.lin.9" class="external">NTUT IFM JyunHao</a></p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+     <!-- JavaScript files-->
+  <!-- <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/umd/popper.min.js') }}"> </script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/grasp_mobile_progress_circle-1.0.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.cookie.js') }}"> </script>
+    <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.validate.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.mCustomScrollbar.concat.min.js') }}"></script> -->
+  <script src="../static/js/jquery.min.js">
+  </script> 
+  <script src="../static/js/umd/popper.min.js">
+  </script> 
+  <script src="../static/js/bootstrap.min.js">
+  </script> 
+  <script src="../static/js/grasp_mobile_progress_circle-1.0.0.min.js">
+  </script> 
+  <script src="../static/js/jquery.cookie.js">
+  </script> 
+  <script src="../static/js/Chart.min.js">
+  </script> 
+  <script src="../static/js/jquery.validate.min.js">
+  </script> 
+  <script src="../static/js/jquery.mCustomScrollbar.concat.min.js">
+  </script> <!-- Main File -->
+<script src="../static/js/front.js"></script>
+  
+ 
+   <!--  <script type="text/javascript">
+      {% with messages = get_flashed_messages() %} 
+        {% if messages %} 
+          {% for message in messages %}
+            alert( '{{message}}' )
+          {% endfor %} 
+        {% endif %} 
+      {% endwith %}
+
+      $('button[type="submit"]').click( ()=> {
+        if ( $('#userToken').val() !== '{{ session["userToken"] }}' ) {
+          alert( 'Wrong Token!')
+          return false
+        } else {
+
+        }
+      })
+    </script> -->
+    
+  </body>
+</html>

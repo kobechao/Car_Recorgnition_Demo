@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>個人汽車資訊</title>
+  <meta content="" name="description">
+  <meta content="width=device-width, initial-scale=1" name="viewport"><!-- <link rel="stylesheet" href="{{ url_for( 'static', filename='css/bootstrap.min.css' )}}"> -->
+  <!-- Font Awesome CSS-->
+  <!--  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='css/font-awesome.min.css' )}}">   --><!-- Fontastic Custom icon font-->
+  <!-- <link rel="stylesheet" href="{{ url_for( 'static', filename='css/fontastic.css' )}}"> -->
+  <!-- jQuery Circle-->
+  <!-- <link rel="stylesheet" href="{{ url_for( 'static', filename='css/grasp_mobile_progress_circle-1.0.0.min.css' )}}"> -->
+  <!-- Custom Scrollbar-->
+  <!--  <link rel="stylesheet" href="{{ url_for( 'static', filename='css/jquery.mCustomScrollbar.css' )}}"> -->
+  <!-- theme stylesheet-->
+  <!-- <link rel="stylesheet" href="{{ url_for( 'static', filename='css/style.default.css' )}}"> -->
+  <!-- Custom stylesheet - for your changes-->
+  <!-- <link rel="stylesheet" href="{{ url_for( 'static', filename='css/custom.css') }}"> -->
+  <!-- Favicon-->
+  <!-- <link rel="shortcut icon" href="{{ url_for( 'static', filename='img/favicon.ico') }}"> -->
+  <!-- Bootstrap CSS-->
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet"><!-- Font Awesome CSS-->
+  <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+  <link href="../static/css/font-awesome.min.css" rel="stylesheet"><!-- Fontastic Custom icon font-->
+  <link href="../static/css/fontastic.css" rel="stylesheet"><!-- jQuery Circle-->
+  <link href="../static/css/grasp_mobile_progress_circle-1.0.0.min.css" rel="stylesheet"><!-- Custom Scrollbar-->
+  <link href="../static/css/jquery.mCustomScrollbar.css" rel="stylesheet"><!-- theme stylesheet-->
+  <link href="../static/css/style.default.css" rel="stylesheet"><!-- Custom stylesheet - for your changes-->
+  <link href="../static/css/custom.css" rel="stylesheet"><!-- Favicon-->
+  <link href="../static/img/favicon.ico" rel="shortcut icon">
+</head>
+<body>
+  <!-- Side Navbar -->
+  <nav class="side-navbar">
+    <div class="side-navbar-wrapper">
+      <!-- Sidebar Header    -->
+      <div class="sidenav-header d-flex align-items-center justify-content-center">
+        <!-- User Info-->
+        <div class="sidenav-header-inner text-center">
+          <a href="profile.html"><img alt="person" class="img-fluid rounded-circle" src="../static/img/user-icon.png"></a>
+          <h2 class="h5" id="username">NAME</h2><span></span>
+        </div><!-- Small Brand information, appears on minimized sidebar-->
+        <div class="sidenav-header-logo">
+          <a class="brand-small text-center" href="/index"><strong></strong><strong class="text-primary"></strong></a>
+        </div>
+      </div><!-- Sidebar Navigation Menus-->
+      <div class="main-menu">
+        <h5 class="sidenav-heading"></h5>
+        
+      </div>
+    </div>
+  </nav>
+  <div class="page">
+    <!-- navbar-->
+    <header class="header">
+      <nav class="navbar">
+        <div class="container-fluid">
+          <div class="navbar-holder d-flex align-items-center justify-content-between">
+            <div class="navbar-header">
+              <a class="menu-btn" href="#" id="toggle-btn"><i class="icon-bars"></i></a> <a class="navbar-brand" href="/index">
+              <div class="brand-text d-none d-md-inline-block">
+                <strong class="text-primary"><i class="fas fa-wrench"></i></strong>
+              </div></a>
+            </div>
+            <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+              <!-- Notifications dropdown-->
+              <li class="nav-item dropdown">
+                <a aria-expanded="false" aria-haspopup="true" class="nav-link" data-target="#" data-toggle="dropdown" href="#" id="notifications" rel="nofollow"><i class="fa fa-bell"></i></a>
+                <ul aria-labelledby="notifications" class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item all-notifications text-center" href="#" rel="nofollow"><strong><i class="fa fa-bell"></i>No notifications</strong></a>
+                  </li>
+                </ul>
+              </li><!-- Messages dropdown-->
+              <li class="nav-item dropdown">
+                <a aria-expanded="false" aria-haspopup="true" class="nav-link" data-target="#" data-toggle="dropdown" href="#" id="messages" rel="nofollow"><i class="fa fa-envelope"></i></a>
+                <ul aria-labelledby="notifications" class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item all-notifications text-center" href="#" rel="nofollow"><strong><i class="fa fa-envelope"></i>No messages</strong></a>
+                  </li>
+                </ul>
+              </li><!-- Languages dropdown    -->
+              <li class="nav-item dropdown">
+                <a aria-expanded="false" aria-haspopup="true" class="nav-link language dropdown-toggle" data-target="#" data-toggle="dropdown" href="#" id="languages" rel="nofollow"><img alt="Taiwan" src="../static/img/flags/16/TW.png"><span class="d-none d-sm-inline-block">Taiwan</span></a>
+                <ul aria-labelledby="languages" class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="#" rel="nofollow"><img alt="English" class="mr-2" src="../static/img/flags/16/US.png"><span>USA</span></a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#" rel="nofollow"><img alt="Japanines" class="mr-2" src="../static/img/flags/16/JP.png"><span>Japan</span></a>
+                  </li>
+                </ul>
+              </li><!-- Log out-->
+              <li class="nav-item">
+                <a class="nav-link logout" href="{{%20url_for('login.login')%20}}"><span class="d-none d-sm-inline-block">Logout</span><i class="fas fa-sign-out-alt"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header><!-- Counts Section -->
+    <section class="dashboard-counts section-padding">
+      <div class="container-fluid">
+        <div class="col`">
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <div class="col">
+                  <h4>待維修汽車</h4>
+                </div>    
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Address</th>
+                        <th>車主</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>0x000000000000000000000000001</td>
+                        <td>魯夫</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>0x000000000000000000000000002</td>
+                        <td>索隆</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>0x000000000000000000000000003</td>
+                        <td>娜美</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="dashboard-counts">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">            
+            <div class="display h1">
+              <strong class="text-center">
+                  <i class="fas fa-car"></i>請輸入汽車合約位址，新增維修紀錄</strong><br>
+              <input type="text" class="form-control" id="carAddress" name="userToken" placeholder="Your Car Address Above..." required="true" ><br>
+              <button class="btn btn-primary btn-block" id="token_btn" type="submit" data-target="#addMaintanceRecord" data-toggle="modal" >新增維修資訊</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- Statistics Section-->
+    <section class="statistics section-padding">
+      <div class="container-fluid">
+        
+      </div>
+
+    </section>
+  
+ 
+    <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bd-example-modal-lg" id="addMaintanceRecord" role="dialog" tabindex="-1">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <form>
+          <div class="modal-header">
+            <h5 class="modal-title text-center"></h5><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group row">
+              <label class="col-2 form-control-label">車牌號碼</label>
+               <div class="col-10">
+                 <input type="text" class="form-control" name="personalID" id="personalID"  value="ABC-1234"  disabled>
+              </div>
+            </div>
+             <div class="form-group row">
+              <label class="col-2 form-control-label">維修日期</label>
+               <div class="col-10">
+                 <input type="date" class="form-control" name="personalID" id="personalID"  value="" >
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-2 form-control-label">維修類型</label>
+               <div class="col-10">
+                 <select name="account" class="form-control" name="marrige" id="marrige">
+                          <option value="一般保養">一般保養</option>
+                          <option value="維修">維修</option>
+                          
+                        </select>
+              </div>
+            </div>
+             <div class="form-group row">
+              <label class="col-2 form-control-label">里程</label>
+               <div class="col-10">
+                
+                 <input type="text" class="form-control" name="personalID" id="personalID"  value=""  >
+              
+              </div>
+            </div>
+            <div class="btn btn-primary" onclick="addMaintanceItem()">新增維修項目</div>
+            <br>
+            <br>
+            <table class="table table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>維修項目</th>                     
+                    </tr>
+                  </thead>
+                  <tbody id="maintanceItemList">
+                    
+                  </tbody>
+                </table>
+          </div>
+          <div class="modal-footer">
+            <input type="reset" class="btn btn-secondary" data-dismiss="modal" value="重填">
+            <input type="submit" class="btn btn-primary" data-dismiss="modal" value="新增">
+                
+          </div>
+        </form>
+        </div>
+      </div>
+    </div><!-- Updates Section -->
+    <footer class="main-footer">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6">
+            <p>NTUT IFM &copy; 2018</p>
+          </div>
+          <div class="col-sm-6 text-right">
+            <p>Design by <a class="external" href="https://www.facebook.com/chung.h.lin.9">NTUT IFM JyunHao</a></p><!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions and it helps me to run Bootstrapious. Thank you for understanding :)-->
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div><!-- JavaScript files-->
+  <!-- JavaScript files-->
+  <!--     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/umd/popper.min.js') }}"> </script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/grasp_mobile_progress_circle-1.0.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.cookie.js') }}"> </script>
+    <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.validate.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.mCustomScrollbar.concat.min.js') }}"></script> -->
+  <script src="../static/js/jquery.min.js">
+  </script> 
+  <script src="../static/js/umd/popper.min.js">
+  </script> 
+  <script src="../static/js/bootstrap.min.js">
+  </script> 
+  <script src="../static/js/grasp_mobile_progress_circle-1.0.0.min.js">
+  </script> 
+  <script src="../static/js/jquery.cookie.js">
+  </script> 
+  <script src="../static/js/Chart.min.js">
+  </script> 
+  <script src="../static/js/jquery.validate.min.js">
+  </script> 
+  <script src="../static/js/jquery.mCustomScrollbar.concat.min.js">
+  </script> <!-- Main File-->
+   <!-- <script src="{{ url_for('static', filename='js/front.js') }}"></script> -->
+   
+  <script src="../static/js/front.js"></script> 
+  <script type="text/javascript">
+    var maintanceItemNo=1;
+    function addMaintanceItem(){
+   
+    var maintanceItemList =  document.getElementById('maintanceItemList');
+    var newTr = document.createElement('tr');
+    var newTh = document.createElement('th');
+    var newMaintanceNo = document.createTextNode(maintanceItemNo);
+    newTh.appendChild(newMaintanceNo);
+    var newTd = document.createElement('td');
+    var newInput = document.createElement('input');
+    newInput.type="text";
+    newInput.className="form-control";
+    newInput.id="maintanceItem"+maintanceItemNo;
+    newTd.appendChild(newInput);
+    newTr.appendChild(newTh);
+    newTr.appendChild(newTd);
+    maintanceItemList.appendChild(newTr);
+    maintanceItemNo++;
+   } 
+      
+ // {% with messages = get_flashed_messages() %} 
+ //        {% if messages %} 
+ //          {% for message in messages %}
+ //            alert( '{{message}}' )
+ //          {% endfor %} 
+ //        {% endif %} 
+ //      {% endwith %}
+
+ //      var contant_department = $('#contant_department');
+
+
+ //      $('#token_btn').prop('disabled', true);
+ //      $('#token_txt').keyup(function() {
+ //        if($(this).val() != '') {
+ //           $('#token_btn').prop('disabled', false);
+ //        }
+ //      });
+
+
+
+ //      $("#token_btn").click( ()=> {
+ //        var userToken = $("#token_txt").val();
+
+ //        $.ajax( {
+ //          url: "{{ url_for('index.getAuthorizedDepartmentData') }}",
+ //          data: {
+ //            userid: "{{ session['userid'] }}",
+ //            userToken: userToken
+ //          },
+ //          type: "POST",
+ //          success: function( response ) {
+ //            console.log( response );
+ //            if( response['message'] ) {
+ //              alert( response['message'] )
+ //            } else {
+ //              contant_department.hide();
+ //              contant_department.html( response );
+ //              contant_department.show(1000);
+
+ //            }
+ //          },
+ //          error: function( error ) {
+ //            console.log( error );
+ //          }
+ //        })
+ //      }) 
+$('#addMaintanceRecord').on('show.bs.modal', function (event) {
+  var input = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = input.data('whatever')
+  var address = document.getElementById('carAddress').value;
+
+  console.log(address)  // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-title').text('新增維修紀錄： ' + address)
+  
+})
+    </script>
+
+</body>
+</html>
