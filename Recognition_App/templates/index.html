@@ -53,7 +53,7 @@
         <h5 class="sidenav-heading"></h5>
         <ul class="side-menu list-unstyled" id="side-main-menu">
           <li>
-            <a href="{{url_for('index.index')}}"><i class="fas fa-car"></i>你的車輛</a>
+            <a href="#"><i class="fas fa-car"></i>你的車輛</a>
           </li>
           <li>
             <a href="{{url_for('index.applyMaintance')}}"><i class="fas fa-wrench"></i>汽車維修</a>
@@ -282,11 +282,10 @@
             <h5 class="modal-title text-center" id="exampleModalLabel">0xa00000000000000000000000001</h5><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
           </div>
           <div class="modal-body">
-            車牌號碼:ABC-1234<br><br>
-            維修日期：2009-01-02<br><br>
-            維修類型：一般保養<br><br>
-            里程：2000公里<br><br>
-            <br>
+            <div id="carNo">車牌號碼:ABC-1234</div>
+            <div id="maintanceDate">維修日期：2009-01-02</div>
+            <div id="maintanceType">維修類型：一般保養</div>
+            <div id="mileage">里程：2000公里</div><br>
             <table class="table table-striped table-hover">
                   <thead>
                     <tr>
@@ -294,21 +293,8 @@
                       <th>維修項目</th>                     
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>更換板金</td>
-                      
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>打蠟</td>
-                      
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>白金/電容器更換</td>                      
-                    </tr>
+                  <tbody id="maintanceItem">
+                    
                   </tbody>
                 </table>
           </div>
@@ -341,6 +327,7 @@
     <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.validate.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/web3.js') }}"></script>
   <!-- <script src="../static/js/jquery.min.js">
   </script> 
   <script src="../static/js/umd/popper.min.js">
@@ -362,6 +349,97 @@
   <!-- <script src="../static/js/front.js"></script>  -->
   <script type="text/javascript">
       var equipmentNo=1;
+
+
+
+    var web3 = require('web3');
+    var web3 = new web3()
+    if(!web3.currentProvider)
+      web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
+
+    var getFixRecordContract = web3.eth.contract([
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getMaintananceInfo",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getAddr",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "_carAddr",
+        "type": "address"
+      },
+      {
+        "name": "_fixFactoryID",
+        "type": "string"
+      },
+      {
+        "name": "_fixDate",
+        "type": "string"
+      },
+      {
+        "name": "_mileage",
+        "type": "uint256"
+      },
+      {
+        "name": "_fixType",
+        "type": "string"
+      },
+      {
+        "name": "_fixList",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  }
+]);
+
+ 
  
       function addEquipment(){
        
@@ -393,7 +471,45 @@
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         var modal = $(this)
         modal.find('.modal-title').text('維修紀錄： ' + recipient);
-        modal.find('.modal-body').text(recipient);  
+        
+        var getFixContract = getFixRecordContract.at(recipient);
+        var FixRecordResult = getFixContract.getMaintananceInfo();
+        console.log(FixRecordResult);
+        console.log(FixRecordResult.length);
+
+        　var string = FixRecordResult[5];
+        　var maintanceItem = new Array();
+　        var maintanceItem = string.split(",");
+        
+       
+        modal.find('#carNo').text('維修車廠：'+ FixRecordResult[1]);
+        modal.find('#maintanceDate').text('維修日期：'+ FixRecordResult[2]);
+        modal.find('#maintanceType').text('維修類型：'+ FixRecordResult[3]);
+        modal.find('#mileage').text('維修里程：'+ FixRecordResult[4]);
+
+        
+        var maintanceItemTable =  document.getElementById('maintanceItem');
+
+        while (maintanceItemTable.firstChild) {
+            maintanceItemTable.removeChild(maintanceItemTable.firstChild);
+        }
+       
+       for(var i=0 ; i<maintanceItem.length;i++){
+       
+        var newTh = document.createElement('th');
+        var newNo = document.createTextNode(i+1);
+        newTh.appendChild(newNo);
+        var newTr = document.createElement('tr');
+        var newTd = document.createElement('td');
+        var newItem = document.createTextNode(maintanceItem[i]);
+        newTd.appendChild(newItem);
+        newTr.appendChild(newTh);
+        newTr.appendChild(newTd);
+        maintanceItemTable.appendChild(newTr);
+
+       }
+        
+        
       })
 
 

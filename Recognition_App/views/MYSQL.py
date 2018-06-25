@@ -2,7 +2,7 @@ import pymysql
 import json
 
 def connect_to_db() :
-	conn = pymysql.connect( host='127.0.0.1', user='root', passwd='tina1633', db='DBO_CAR_RECORGNITION')
+	conn = pymysql.connect( host='127.0.0.1', user='root', passwd='root', db='DBO_CAR_RECORGNITION')
 
 	return conn
 
@@ -97,7 +97,7 @@ def getFixRecordData() :
 	cursor = conn.cursor( pymysql.cursors.DictCursor )
 
 	try:
-		sql = 'SELECT fix_Apply.fixApplyNo ,car_personal_table.name, fix_Apply.carContractAddr  FROM fix_Apply join car_record_table on fix_Apply.carContractAddr = car_record_table.carContractAddr join car_personal_table on car_record_table.IDNumber = car_personal_table.IDNumber; '
+		sql = 'SELECT fix_Apply.fixApplyNo ,car_personal_table.name, fix_Apply.carContractAddr  FROM fix_Apply join car_record_table on fix_Apply.carContractAddr = car_record_table.carContractAddr join car_personal_table on car_record_table.IDNumber = car_personal_table.IDNumber ORDER BY fix_Apply.fixApplyNo; '
 		cursor.execute( sql )
 		fixData = cursor.fetchall()
 		print( fixData )
@@ -188,7 +188,7 @@ def getAuctionData():
 	cursor = conn.cursor( pymysql.cursors.DictCursor )
 
 	try:
-		sql = 'SELECT car_personal_table.name ,auction_personal_table.auctioneerName,auction_apply.carContractAddr FROM auction_personal_table join auction_apply on auction_personal_table.auctioneerID = auction_apply.auctioneerID join car_record_table on auction_apply.carContractAddr = car_record_table.carContractAddr join car_personal_table on car_record_table.IDNumber = car_personal_table.IDNumber ;'
+		sql = 'SELECT auction_apply.auctionApplyNo ,car_personal_table.name ,auction_personal_table.auctioneerName,auction_apply.carContractAddr FROM auction_apply join auction_personal_table  on auction_personal_table.auctioneerID = auction_apply.auctioneerID join car_record_table on auction_apply.carContractAddr = car_record_table.carContractAddr join car_personal_table on car_record_table.IDNumber = car_personal_table.IDNumber order by auction_apply.auctionApplyNo;'
 		cursor.execute( sql )
 		auctionData = cursor.fetchall()
 		print( auctionData )

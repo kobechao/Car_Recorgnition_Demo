@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect,flash, url_for
-from .MYSQL import *
+from .MYSQL import connect_to_db
 # from Recognition_App.contract import ID_Recognition_Contract, getContractDBData
 
 
@@ -20,10 +20,8 @@ def register() :
 		form = request.form
 		print( 'post:', form)
 
-		if verify( form.get('registerID', None), form.get('password', 'None' ) ):
-			flash( '此ID已註冊過' )
-			return redirect( url_for('register.register') )
-
+		if False:
+			pass
 		else :
 			# registerTx = ID_Recognition_Contract.setUserRegisterTable( userID=form['personalID'] ).hex()
 			# assert ID_Recognition_Contract.getUserRegisterTable( userID=form['personalID'] ) == True
