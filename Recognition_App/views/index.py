@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, session, g, redirect, url_for, flash, jsonify, abort
 from Recognition_App.CarContract import Car_Recorgnition_Contract
-from flask_login import ( current_user, login_required, logout_user )
+from flask_login import current_user, login_required, logout_user 
 import requests, json
 
 from .MYSQL import *
@@ -12,6 +12,8 @@ web3 = Web3( HTTPProvider( 'http://localhost:8545' ) )
 eth = web3.eth
 assert web3.isConnected()
 assert eth.accounts
+
+
 
 
 INDEX = Blueprint('index', __name__, template_folder='templates', static_folder='static', url_prefix='/index')
@@ -43,6 +45,7 @@ def index() :
 			return redirect( url_for('index.index'))
 
 	else :
+		print( 'current_user~~~', current_user, type( current_user) )
 		if current_user.is_active :
 
 			res = dict()

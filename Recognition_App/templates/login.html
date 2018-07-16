@@ -49,8 +49,9 @@
           <div class="tab-content" id="pills-tabContent">
             <div aria-labelledby="pills-home-tab" class="tab-pane fade show active" id="nav-home" role="tabpanel">
               <form action="#" class="text-left form-validate" method="post">
+                {{ form.hidden_tag() }} 
                 <div class="form-group-material">
-                  <input class="input-material" data-msg="Please enter your username" id='personalID' name='personalID' required="" type='text'> <label class="label-material" for="login-username">身分證字號</label>
+                  <input class="input-material" data-msg="Please enter your username" id='IDNumber' name='IDNumber' required="" type='text'> <label class="label-material" for="login-username">身分證字號</label>
                 </div>
                 <div class="form-group-material">
                   <input class="input-material" data-msg="Please enter your password" id='password' name='password' required="" type='password'> <label class="label-material" for="login-password">密碼</label>
@@ -62,8 +63,9 @@
             </div>
             <div aria-labelledby="pills-profile-tab" class="tab-pane fade" id="nav-profile" role="tabpanel">
               <form action="#" class="text-left form-validate" method="post">
+                {{ form.hidden_tag() }} 
                 <div class="form-group-material">
-                  <input class="input-material" data-msg="Please enter your username" id='personalID' name='personalID' required="" type='text'> <label class="label-material" for="login-username">廠商編號</label>
+                  <input class="input-material" data-msg="Please enter your username" id='IDNumber' name='IDNumber' required="" type='text'> <label class="label-material" for="login-username">廠商編號</label>
                 </div>
                 <div class="form-group-material">
                   <input class="input-material" data-msg="Please enter your password" id='password' name='password' required="" type='password'> <label class="label-material" for="login-password">密碼</label>
@@ -75,8 +77,9 @@
             </div>
             <div aria-labelledby="pills-contact-tab" class="tab-pane fade" id="nav-contact" role="tabpanel">
               <form action="#" class="text-left form-validate" method="post">
+                {{ form.hidden_tag() }} 
                 <div class="form-group-material">
-                  <input class="input-material" data-msg="Please enter your username" id='personalID' name='personalID' required="" type='text'> <label class="label-material" for="login-username">拍賣商編號</label>
+                  <input class="input-material" data-msg="Please enter your username" id='IDNumber' name='IDNumber' required="" type='text'> <label class="label-material" for="login-username">拍賣商編號</label>
                 </div>
                 <div class="form-group-material">
                   <input class="input-material" data-msg="Please enter your password" id='password' name='password' required="" type='password'> <label class="label-material" for="login-password">密碼</label>

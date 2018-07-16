@@ -2,7 +2,7 @@ import pymysql
 import json
 
 def connect_to_db() :
-	conn = pymysql.connect( host='127.0.0.1', user='root', passwd='root', db='DBO_CAR_RECORGNITION')
+	conn = pymysql.connect( host='127.0.0.1', user='root', passwd='tina1633', db='DBO_CAR_RECORGNITION')
 
 	return conn
 

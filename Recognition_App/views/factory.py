@@ -16,6 +16,7 @@ FACTORY = Blueprint('factory', __name__, template_folder='templates', static_fol
 MaintananceContract = MaintananceContract()
 
 @FACTORY.route( '/', methods = ['GET', 'POST'] )
+@login_required
 def factory() :
 	if request.method == 'GET' :
 		res = dict()

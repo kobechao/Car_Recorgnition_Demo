@@ -5,8 +5,7 @@ import json
 import uuid
 import pymysql
 
-from Recognition_App import db
-
+db = pymysql.connect( host='127.0.0.1', user='root', passwd='tina1633', db='DBO_CAR_RECORGNITION')
 
 class User( UserMixin ):
 
@@ -34,13 +33,13 @@ class User( UserMixin ):
 
 
 	def get_password( self ):
-		cursor = conn.cursor( pymysql.cursors.DictCursor )
+		cursor = db.cursor( pymysql.cursors.DictCursor )
 
 		try:
-			sql = 'SELECT password FROM car_personal_table WHERE IDNumber = \'%s\';' % ( self.IDNumber )
+			sql = 'SELECT * FROM car_personal_table WHERE IDNumber = \'%s\';' % ( self.IDNumber )
 			print( sql )
 			cursor.execute( sql )
-			password = cursor.fetchone()
+			password = cursor.fetchone()['password']
 
 			return password
 
@@ -56,7 +55,7 @@ class User( UserMixin ):
 		if self.IDNumber is not None:
 			return True
 
-		return unicode( uuid.uuid4() )
+		return str( uuid.uuid4() )
 
 
 	@staticmethod

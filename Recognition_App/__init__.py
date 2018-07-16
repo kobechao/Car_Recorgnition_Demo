@@ -11,6 +11,8 @@ from .views.auction import AUCTION
 from Recognition_App.models import User
 
 import pymysql
+import os
+
 
 app = Flask(__name__, instance_relative_config=True)
 
@@ -22,20 +24,20 @@ app.register_blueprint( INDEX, url_prefix='/index' )
 app.register_blueprint( FACTORY )
 app.register_blueprint( AUCTION )
 
-db = pymysql.connect( host='127.0.0.1', user='root', passwd='root', db='DBO_CAR_RECORGNITION')
 
 login_manager = LoginManager()
-login_manager.session.protection = 'strong'
-login_manager.login_view = 'login'
+login_manager.session_protection = 'strong'
+login_manager.login_view = 'login.login'
 login_manager.init_app( app=app )
 
 @login_manager.user_loader
 def user_loader( user_id ):
+	print( 'UserLoader', User.get( user_id ) )
 	return User.get( user_id )
 
 
-csrf = CsrfProtect()
-csrf.init_app( app )
+# csrf = CsrfProtect()
+# csrf.init_app( app ) 
 
 
 from Recognition_App import views

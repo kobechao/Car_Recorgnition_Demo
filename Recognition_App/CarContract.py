@@ -22,16 +22,17 @@ class Car_Recorgnition_Contract():
 
 
 
-	def getContract( self, args, equipmentList ) :
+	def getContract( self, args ) :
 
 
-		self.__adminAddr = eth.accounts[0]
+		self.__adminAddr = eth.accounts[1]
+		print( self.__adminAddr )
 		self.contractBytecode, self.contractABI = self.__get_Bytecode_ABI()
 
 		self.contract_Car_Recorgnition = eth.contract( abi = self.contractABI, bytecode = self.contractBytecode )
 
 		self.contractHash = self.contract_Car_Recorgnition \
-			.constructor ( args['licencePlateNumber'], args['engineSerialNumber'], args['factory'], int(args['carYears']), args['carStyle'], args['carColor'], int(args['carLoading']), equipmentList ) \
+			.constructor ( args['licencePlateNumber'], args['engineSerialNumber'], args['factory'], int(args['carYears']), args['carStyle'], args['carColor'], int(args['carLoading']), args['carEquipments'] ) \
 			.transact( transaction = { "from": self.__adminAddr } )
 
 		self.receipt = eth.waitForTransactionReceipt( self.contractHash )

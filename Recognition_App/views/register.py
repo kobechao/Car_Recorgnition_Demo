@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, request, redirect,flash, url_for
 from werkzeug.security import generate_password_hash
 
-from Recognition_App import db
-# from .MYSQL import connect_to_db
-# from Recognition_App.contract import ID_Recognition_Contract, getContractDBData
+from Recognition_App.models import db
+from Recognition_App.forms import LoginForm
+
 
 REGISTER = Blueprint('register', __name__, template_folder='templates', static_folder='static')
 
@@ -25,7 +25,6 @@ def register() :
 			
 		else :
 			
-			# conn = connect_to_db()
 			cursor = db.cursor()
 
 			try :
@@ -42,7 +41,7 @@ def register() :
 					cursor.execute( sql % ( form['registerID'], form['auctioneerName'], form['agent'], generate_password_hash( form['password'] ) ))
 				
 
-				conn.commit()
+				db.commit()
 				flash( '註冊成功' )
 
 			except Exception as e :
