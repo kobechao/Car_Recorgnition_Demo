@@ -25,15 +25,16 @@ def index() :
 
 	if request.method == 'POST' :
 		form = request.form
-		print( form )
 
 		equipmentList = list()
 		
 		for key in form.keys() :
 			if 'equipment' in key:
 				equipmentList.append( form[key] )
+
+		print( form.to_dict(), ','.join( equipmentList ) )
 		
-		Car_Recorgnition_Contract.getContract( form.to_dict(), ','.join( equipmentList ) )
+		Car_Recorgnition_Contract.getContract( form.to_dict() )
 		print( Car_Recorgnition_Contract.getCarEquipmentList() )
 
 		

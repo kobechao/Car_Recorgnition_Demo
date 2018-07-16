@@ -63,4 +63,4 @@ class User( UserMixin ):
 		if not user_id:
 			return None
 
-		return True
+		return User( "LKJ" )
