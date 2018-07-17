@@ -53,7 +53,7 @@ class User( UserMixin ):
 
 	def get_id( self ):
 		if self.IDNumber is not None:
-			return True
+			return self.IDNumber
 
 		return str( uuid.uuid4() )
 
@@ -63,4 +63,4 @@ class User( UserMixin ):
 		if not user_id:
 			return None
 
-		return User( "LKJ" )
+		return User( user_id )

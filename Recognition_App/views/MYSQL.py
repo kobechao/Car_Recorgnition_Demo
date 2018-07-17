@@ -98,6 +98,7 @@ def getFixRecordData() :
 
 	try:
 		sql = 'SELECT fix_Apply.fixApplyNo ,car_personal_table.name, fix_Apply.carContractAddr  FROM fix_Apply join car_record_table on fix_Apply.carContractAddr = car_record_table.carContractAddr join car_personal_table on car_record_table.IDNumber = car_personal_table.IDNumber ORDER BY fix_Apply.fixApplyNo; '
+		print( sql )
 		cursor.execute( sql )
 		fixData = cursor.fetchall()
 		print( fixData )
@@ -205,33 +206,6 @@ def getAuctionData():
 	conn.close()
 
 
-
-def verify( registerID, loginPwd ) :
-	
-	conn = connect_to_db()
-	cursor = conn.cursor( pymysql.cursors.DictCursor )
-
-	try:
-		sql = 'SELECT password FROM car_personal_table WHERE IDNumber = \'%s\';' % ( registerID )
-		print( sql )
-		cursor.execute( sql )
-		password = cursor.fetchone()
-
-		if password:
-			if loginPwd == password : 
-				return True
-		
-		return False
-
-	except Exception as e:
-		print( e )
-		cursor.close()
-		conn.close()
-		return False
-		
-
-	cursor.close()
-	conn.close()
 
 
 def getCarABI() :

@@ -21,6 +21,8 @@ def factory() :
 	if request.method == 'GET' :
 		res = dict()
 		res['fixData'] = getFixRecordData()
+
+		print( res )
 		
 		return render_template( 'factoryIndex.html', res=res )
 

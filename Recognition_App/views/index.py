@@ -32,9 +32,8 @@ def index() :
 			if 'equipment' in key:
 				equipmentList.append( form[key] )
 
-		print( form.to_dict(), ','.join( equipmentList ) )
 		
-		Car_Recorgnition_Contract.getContract( form.to_dict() )
+		Car_Recorgnition_Contract.getContract( form.to_dict(), ','.join( equipmentList ) )
 		print( Car_Recorgnition_Contract.getCarEquipmentList() )
 
 		
@@ -46,18 +45,19 @@ def index() :
 			return redirect( url_for('index.index'))
 
 	else :
-		print( 'current_user~~~', current_user, type( current_user) )
+
 		if current_user.is_active :
 
 			res = dict()
-			res['carRecord'] = getCarRecordData( current_user.id, currentPerson=session['loginPerson'] ) 
+			res['carRecord'] = getCarRecordData( current_user.id, 'User'  ) 
 			
+			print( current_user.id )
 			session['userid'] = current_user.id
 			session['carAddrs'] = list()
 			for data in res['carRecord'] :
 				session['carAddrs'].append( data['carContractAddr'])
 			
-			flash( 'Login as ' + session['userName'] )
+			flash( 'Login as ' + current_user.id )
 			
 			return render_template('index.html', res=res )
 		

@@ -32,7 +32,6 @@ login_manager.init_app( app=app )
 
 @login_manager.user_loader
 def user_loader( user_id ):
-	print( 'UserLoader', User.get( user_id ) )
 	return User.get( user_id )
 
 
